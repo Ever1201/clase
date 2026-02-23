@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategias de Aprendizaje - IMSS - Ingeniería & Salud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <aside>
+            <div class="brand">
+                <div style="margin-bottom: 1.5rem; text-align: center;">
+                    <img src="assets/logoimss.png" alt="Logo IMSS" style="max-width: 100px; height: auto;">
+                </div>
+                <h2>Estrategias de Aprendizaje</h2>
+                <small>ISC. UACJ | M.A.H. UNID</small>
+            </div>
+            <nav class="nav-menu">
+                <div class="nav-group">
+                    <span class="nav-group-title">Introducción</span>
+                    <a href="#" class="nav-item active" onclick="showSection('welcome')">Bienvenida e Instructor</a>
+                    <a href="#" class="nav-item" onclick="showSection('fundament')">Fundamentación Teórica</a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-group-title">Tema 1: Aprender a Conocer (3h)</span>
+                    <a href="#" class="nav-item" onclick="showSection('t1-1')">1.1 Definición y 4 Pilares</a>
+                    <a href="#" class="nav-item" onclick="showSection('t1-2')">1.2 Métodos de Estudio</a>
+                    <a href="#" class="nav-item" onclick="showSection('t1-3')">1.3-1.4 Hábito y Tiempo</a>
+                    <a href="#" class="nav-item" onclick="showSection('t1-5')">1.5-1.6 Lugar y Andragogía</a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-group-title">Tema 2: Canales y Estrategias (6h)</span>
+                    <a href="#" class="nav-item" onclick="showSection('t2-1')">2.1 Canal Visual</a>
+                    <a href="#" class="nav-item" onclick="showSection('t2-1-reading')">2.1 Lectura y Ensayo</a>
+                    <a href="#" class="nav-item" onclick="showSection('t2-2')">2.2 Canal Auditivo</a>
+                    <a href="#" class="nav-item" onclick="showSection('t2-3')">2.3 Canal Kinestésico</a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-group-title">Tema 3: Metodologías (3h)</span>
+                    <a href="#" class="nav-item" onclick="showSection('t3-1')">3.1 - 3.3 PQRST, PNI, SQA</a>
+                    <a href="#" class="nav-item" onclick="showSection('t3-4')">3.4 - 3.5 Organizadores</a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-group-title">Tema 4: Tecnologías (4h)</span>
+                    <a href="#" class="nav-item" onclick="showSection('t4-1')">4.1 TIC: Infraestructura</a>
+                    <a href="#" class="nav-item" onclick="showSection('t4-2')">4.2 TAC: Conocimiento</a>
+                    <a href="#" class="nav-item" onclick="showSection('t4-3')">4.3 TEP: Participación</a>
+                </div>
+
+                <div class="nav-group">
+                    <span class="nav-group-title">Finalización</span>
+                    <a href="#" class="nav-item" onclick="showSection('evaluation')">Evaluación Final</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Top Header -->
+        <header>
+            <div class="header-meta">
+                <button class="toggle-btn" onclick="toggleSidebar()" title="Ocultar Menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="badge">CURSO POSTÉCNICO ENFERMERÍA</span>
+                <span class="badge">TOTAL: 16 Horas</span>
+                <img src="assets/logoimssnegro.png" alt="IMSS" style="height: 40px; margin-left: 1rem; opacity: 0.9;">
+            </div>
+            <div class="progress-container">
+                <div id="main-progress-bar" class="progress-bar"></div>
+                <small class="progress-label">Avance de la Unidad Didáctica</small>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main>
+            <img src="assets/arribaizquierda.png" class="bg-decoration bg-top-left" alt="">
+            <img src="assets/abajoderecha.png" class="bg-decoration bg-bottom-right" alt="">
+            <!-- SECTION: Welcome -->
+            <section id="welcome" class="content-section active">
+                <img src="assets/critical_care_hero_1771818873372.png" class="hero-img" alt="Enfermería Crítica">
+                <h1>Abordaje Inicial del Paciente Crítico</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Perfil del Instructor</h3>
+                        <p style="font-size: 1.4rem; color: var(--primary); font-weight: 800; margin-bottom: 0.2rem;">
+                            Ever Gerardo García Botello</p>
+                        <p
+                            style="font-size: 1rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 0.1rem;">
+                            Ing. Sistemas Computacionales (UACJ)</p>
+                        <p style="font-size: 1rem; color: var(--secondary); font-weight: 500;">Maestría en
+                            Administración de Hospitales (UNID)</p>
+                        <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--border);">
+                        <p>Aportando un enfoque multidisciplinario: la precisión de la ingeniería y la estrategia de la
+                            administración aplicadas a la educación en cuidados intensivos.</p>
+                        <ul class="check-list">
+                            <li>Optimización de sistemas de aprendizaje.</li>
+                            <li>Gestión estratégica de recursos educativos.</li>
+                            <li>Liderazgo en innovación tecnológica hospitalaria.</li>
+                        </ul>
+                        <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--border);">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 0.9rem;">ENTRENAMIENTOS
+                            ESPECIALES:</h4>
+                        <ul class="check-list" style="font-size: 0.85rem;">
+                            <li>Diplomado en administracion de proyectos <strong>WISTRON</strong>.</li>
+                            <li>Curso de programación de video juegos en <strong>XNA (C#)</strong>.</li>
+                            <li>Certificación en fundamentos de <strong>ITIL</strong>.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Descripción de la Unidad</h3>
+                        <p>Naturaleza teórica aplicable a todas las unidades subsecuentes.</p>
+                        <div class="info-block" style="font-size: 0.9rem;">
+                            Organizada en 4 Temas: Aprender a conocer, Canales de Aprendizaje, Metodologías de
+                            información y Ecosistema Tecnológico (TIC-TAC-TEP).
+                        </div>
+                        <ul class="check-list">
+                            <li>Eje Curricular: Metodológico</li>
+                            <li>Horas Totales: 16 Horas</li>
+                            <li>Nivel: I - Novato</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Fundamentation -->
+            <section id="fundament" class="content-section">
+                <h1>Fundamentación Pedagógica</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Educación por Competencias</h3>
+                        <span class="concept-tag">Cognitivo</span> <span class="concept-tag">Metacognitivo</span> <span
+                            class="concept-tag">Emocional</span>
+                        <p>González y Wagenaar (2020) proponen que este enfoque permite al estudiante:</p>
+                        <ul>
+                            <li><strong>Adquirir teoría sólida.</strong></li>
+                            <li><strong>Desarrollar habilidades prácticas.</strong></li>
+                            <li><strong>Fomentar actitudes ante situaciones reales.</strong></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Estrategias Dinámicas</h3>
+                        <p>El uso de ABP (Aprendizaje Basado en Problemas) y Aprendizaje Colaborativo:</p>
+                        <div class="example-box">
+                            "Fomentan la participación activa para un aprendizaje más profundo y significativo." -
+                            Michaelsen et al. (2021)
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Tecnología y Entorno</h3>
+                    <p>Anderson y Dron (2019) destacan la flexibilidad y acceso a recursos mediante e-learning. Dewey
+                        (2017) resalta que el respeto y la confianza entre docente-alumno son la base de la motivación.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 1.1 -->
+            <section id="t1-1" class="content-section">
+                <span class="badge"><i class="fas fa-bookmark"></i> Tema 1.1</span>
+                <h1>Aprender a Conocer en Enfermería</h1>
+                <div class="info-block">
+                    <strong>¿Qué es esto para nosotros?</strong> Es como cuando aprendes un nuevo protocolo de RCP: no
+                    solo memorizas el algoritmo, sino que entiendes por qué haces cada compresión. Es
+                    <strong>autorregular</strong> tu aprendizaje para ser siempre el mejor en tu turno.
+                </div>
+
+                <img src="assets/nursing_team_collaboration.png" class="hero-img" alt="Colaboración en Enfermería">
+
+                <div class="subtopic-header">Los Pilares del Cuidado (Delors / UNESCO)</div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4><i class="fas fa-brain"></i> Aprender a Conocer</h4>
+                        <p><strong>Concepto:</strong> Consiste en adquirir los instrumentos de la comprensión y el
+                            dominio del saber mismo (aprender a aprender).</p>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-stethoscope"></i> Ejemplo:</strong> No solo memorizar dosis, sino
+                            entender la farmacocinética para predecir interacciones y prevenir eventos adversos en
+                            polifarmacia.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-hand-holding-medical"></i> Aprender a Hacer</h4>
+                        <p><strong>Concepto:</strong> Capacitación para hacer frente a situaciones complejas y trabajar
+                            en equipo en contextos laborales variables.</p>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-syringe"></i> Ejemplo:</strong> Dominar la destreza técnica para la
+                            aspiración de secreciones en circuito cerrado manteniendo la estabilidad hemodinámica.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-heart"></i> Aprender a Ser</h4>
+                        <p><strong>Concepto:</strong> Desarrollo pleno de la personalidad, autonomía de juicio y
+                            responsabilidad personal en el actuar profesional.</p>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-user-shield"></i> Ejemplo:</strong> Actuar con ética y abogar por
+                            el bienestar del paciente ante dilemas de encarnizamiento terapéutico en la UCI.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-users"></i> Aprender a Vivir Juntos</h4>
+                        <p><strong>Concepto:</strong> Fomentar el descubrimiento del otro y la participación en
+                            proyectos comunes basados en la comprensión mutua.</p>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-hands-helping"></i> Ejemplo:</strong> Liderazgo y comunicación
+                            efectiva en el equipo de respuesta rápida durante un código rojo hospitalario.
+                        </div>
+                    </div>
+                </div>
+                <div class="example-box">
+                    <strong><i class="fas fa-sync"></i> Ejemplo Cotidiano:</strong> Cuando un colega te enseña un
+                    "truco" para fijar mejor una sonda. Ahí estás <em>Aprendiendo a Hacer</em> y <em>Viviendo
+                        Juntos</em> simultáneamente.
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 1.2 -->
+            <section id="t1-2" class="content-section">
+                <img src="assets/nurse_studying_pomodoro.png" class="hero-img" alt="Estudio Eficiente">
+                <h1>1.2 Métodos para Organizar tu Estudio</h1>
+                <p>En el entorno hospitalario, la gestión del tiempo es una competencia crítica. Estos métodos no solo
+                    organizan tus tareas, sino que optimizan tu neuroplasticidad y retención de información.</p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-stopwatch"></i> Técnica Pomodoro (Cirillo, 1980)</h3>
+                        <p><strong>Concepto:</strong> Método de gestión del tiempo que utiliza un temporizador para
+                            dividir el trabajo en intervalos enfocados, separados por pausas breves para mantener la
+                            agilidad mental.</p>
+                        <p>Basada en la idea de que el cerebro mantiene un enfoque óptimo en bloques cortos. Ayuda a
+                            combatir la <strong>fatiga mental</strong> en guardias largas.</p>
+                        <ul class="check-list">
+                            <li><strong>Sesión de Foco (25 min):</strong> Inmersión total en un solo tema (Ej:
+                                Farmacodinámica).</li>
+                            <li><strong>Descanso Táctico (5 min):</strong> Desconexión cognitiva para consolidar lo
+                                aprendido.</li>
+                            <li><strong>Ciclo Largo:</strong> Tras 4 pomodoros, toma 20-30 min. Esto previene el
+                                <em>burnout</em> académico.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-clipboard-list"></i> Sistema Kanban (Toyota/Anderson)</h3>
+                        <p><strong>Concepto:</strong> Herramienta visual de gestión de tareas que permite rastrear el
+                            progreso de un proyecto dividiéndolo en etapas claras (Por hacer, En proceso, Listo),
+                            evitando la sobrecarga cognitiva.</p>
+                        <p>Un método visual para gestionar el flujo de trabajo. Te permite ver el "cuello de botella" de
+                            tu aprendizaje.</p>
+                        <div class="kanban-board">
+                            <div class="kanban-col kanban-todo">POR HACER<br><small>Temas pendientes</small></div>
+                            <div class="kanban-col kanban-doing">EN CURSO<br><small>Lectura activa</small></div>
+                            <div class="kanban-col kanban-done">FINALIZADO<br><small>Autoevaluado</small></div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.85rem; font-style: italic;">Principio clave: "Deja de
+                            empezar y empieza a terminar".</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3><i class="fas fa-pen-nib"></i> Método Cornell (Walter Pauk): Notas de Alto Rendimiento</h3>
+                    <p><strong>Concepto:</strong> Formato estructurado de toma de apuntes que divide la hoja en tres
+                        secciones clave para organizar el conocimiento, facilitar el repaso y generar síntesis crítica.
+                    </p>
+                    <p>No es solo tomar dictado; es un sistema de <strong>procesamiento profundo</strong> de la
+                        información, ideal para Guías de Práctica Clínica.</p>
+                    <div class="grid-2">
+                        <div class="info-block">
+                            <strong>1. Columna de Pistas (Cues):</strong> Anota palabras clave o preguntas que podrías
+                            encontrar en el examen. <br>
+                            <strong>2. Área de Notas:</strong> Durante la clase o lectura, registra ideas principales
+                            usando diagramas o abreviaturas.<br>
+                            <strong>3. Resumen (Summary):</strong> Al final, sintetiza en 3 líneas lo más vital. Si
+                            puedes explicarlo simple, lo entendiste.
+                        </div>
+                        <div class="example-box">
+                            <strong><i class="fas fa-user-md"></i> Aplicación Clínica:</strong> Usa Cornell para
+                            documentar casos complejos. Te obliga a separar los signos vitales (datos) de la sospecha
+                            diagnóstica (conclusión).
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="t1-3" class="content-section">
+                <span class="badge"><i class="fas fa-history"></i> Tema 1.3 - 1.4</span>
+                <h1>Hábito de Estudio y Gestión del Tiempo</h1>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-redo"></i> 1.3 La Arquitectura del Hábito</h3>
+                        <p><strong>Concepto:</strong> Un hábito es un comportamiento automatizado que se repite de forma
+                            constante ante una señal específica, permitiendo al cerebro liberar recursos cognitivos para
+                            tareas críticas y complejas.</p>
+                        <p>Según Charles Duhigg (2012), un hábito no nace de la voluntad, sino de un <strong>Bucle
+                                Neurológico</strong>:</p>
+                        <div class="info-block">
+                            <strong>1. Señal (Cue):</strong> Un recordatorio (Ej: Al terminar tu café).<br>
+                            <strong>2. Rutina:</strong> La acción de estudiar (20 min de lectura).<br>
+                            <strong>3. Recompensa:</strong> Sensación de dominio o un pequeño descanso.
+                        </div>
+                        <p>La <strong>autonomía</strong> en enfermería se basa en este bucle: convertir la actualización
+                            en un acto reflejo, tan natural como el lavado de manos.</p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-hourglass-half"></i> 1.4 Gestión del Tiempo Crítico</h3>
+                        <p><strong>Concepto:</strong> Proceso de planeación y control consciente sobre el tiempo
+                            dedicado a actividades específicas, con el fin de maximizar la eficiencia y la calidad de
+                            los resultados profesionales.</p>
+                        <p>No se trata de tener más tiempo, sino de gestionar prioridades. Aplicamos la <strong>Matriz
+                                de Eisenhower</strong> al estudio:</p>
+                        <table class="imss-table">
+                            <tr>
+                                <th>Urgente/Importante</th>
+                                <th>No Urgente/Importante</th>
+                            </tr>
+                            <tr>
+                                <td>Evaluaciones inmediatas.</td>
+                                <td><strong>Estudio Preventivo</strong> (Crecimiento).</td>
+                            </tr>
+                        </table>
+                        <p style="margin-top: 1rem;">El secreto del éxito en el Postécnico es pasar más tiempo en lo
+                            <em>"No Urgente pero Importante"</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem; border-left: 5px solid #e53e3e;">
+                    <h3><i class="fas fa-shield-virus"></i> Disciplina vs Procrastinación</h3>
+                    <p><strong>Concepto:</strong> La disciplina es el sistema que regula la acción orientada a objetivos
+                        a largo plazo, mientras que la procrastinación es el retraso deliberado de tareas importantes a
+                        pesar de conocer sus consecuencias negativas.</p>
+                    <div class="grid-2">
+                        <div>
+                            <p>La <em>motivación</em> es volátil; la <em>disciplina</em> es el sistema que te sostiene
+                                cuando el cansancio de la jornada pesa. </p>
+                            <ul class="check-list">
+                                <li><strong>Regla de los 5 Segundos (Mel Robbins):</strong> Si tienes un impulso de
+                                    estudiar, actúa en 5-4-3-2-1 o tu cerebro matará la idea.</li>
+                                <li><strong>Principio de Pareto (80/20):</strong> El 20% de lo que estudias (conceptos
+                                    clave) generará el 80% de tu éxito clínico.</li>
+                            </ul>
+                        </div>
+                        <div class="example-box">
+                            <strong><i class="fas fa-brain"></i> El "Efecto Zeigarnik":</strong> El cerebro recuerda
+                            mejor las tareas interrumpidas. Si dejas un tema "a medias", tu mente seguirá procesándolo,
+                            facilitando el regreso al estudio.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="t1-5" class="content-section">
+                <img src="assets/nursing_station_organization.png" class="hero-img"
+                    alt="Estación de Enfermería Ordenada">
+                <span class="badge"><i class="fas fa-couch"></i> Tema 1.5 - 1.6</span>
+                <h1>Tu Entorno y la Ciencia del Aprendizaje Adulto</h1>
+
+                <div class="subtopic-header">1.5 El Escenario del "Deep Work" (Cal Newport)</div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-lightbulb"></i> Ergonomía y Cognición</h3>
+                        <p><strong>Concepto:</strong> Estudio de la interacción entre el ser humano y los elementos de
+                            un sistema, optimizando el bienestar y el rendimiento cerebral mediante el diseño del
+                            entorno físico.</p>
+                        <p>Tu lugar de estudio es tu "unidad de cuidados intensivos" personal. Debe estar configurado
+                            para el alto rendimiento:</p>
+                        <ul class="check-list">
+                            <li><strong>Iluminación (300-500 lux):</strong> Luz fría para mantener el cortisol bajo
+                                control y evitar la somnolencia post-guardia.</li>
+                            <li><strong>Higiene Sonora:</strong> Silencio o ruido blanco. Evita música con letra, ya que
+                                compite con el <em>bucle fonológico</em> de tu memoria de trabajo.</li>
+                            <li><strong>Temperatura (21-23°C):</strong> Un ambiente muy cálido induce letargo; uno frío
+                                distrae el foco hacia la termorregulación.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-laptop-medical"></i> Minimalismo Digital</h3>
+                        <p><strong>Concepto:</strong> Filosofía tecnológica enfocada en reducir el ruido digital y las
+                            distracciones para centrar los recursos mentales en actividades de alto valor y
+                            procesamiento profundo.</p>
+                        <p>Elimina las "notificaciones de alarma" innecesarias. Tu celular debe estar en un plano visual
+                            distinto al de tu material de estudio para evitar el <strong>costo de cambio de
+                                contexto</strong>.</p>
+                        <div class="info-block">
+                            La fatiga visual se combate con la regla 20-20-20: cada 20 min, mira algo a 20 pies de
+                            distancia por 20 segundos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic-header">1.6 Andragogía Clínica: El Modelo de Malcom Knowles</div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Los 5 Supuestos de Knowles</h3>
+                        <p><strong>Concepto:</strong> La andragogía es la disciplina que se ocupa del aprendizaje de los
+                            adultos, reconociendo que poseen una motivación, experiencia y autonomía distintas a las de
+                            los niños.</p>
+                        <p>Como adulto en el sistema IMSS, tu aprendizaje se rige por:</p>
+                        <ol>
+                            <li><strong>Autoconcepto:</strong> Pasas de la dependencia a la dirección autónoma.</li>
+                            <li><strong>Experiencia:</strong> Tu historial en el piso de medicina interna es tu mayor
+                                recurso didáctico.</li>
+                            <li><strong>Prisa por Aprender:</strong> Aprendes lo que necesitas para resolver un problema
+                                de tu paciente HOY.</li>
+                        </ol>
+                    </div>
+                    <div class="card">
+                        <h3>Orientación al Problema</h3>
+                        <p><strong>Concepto:</strong> Enfoque educativo donde el centro del aprendizaje no es el
+                            contenido teórico aislado, sino la resolución de situaciones reales y el desarrollo de
+                            competencias prácticas.</p>
+                        <p>A diferencia de los niños (centrados en la materia), tú te centras en la
+                            <strong>competencia</strong>. No estudias "Anatomía", estudias cómo esa anatomía explica el
+                            choque hipovolémico de tu paciente.
+                        </p>
+                        <div class="example-box">
+                            <strong><i class="fas fa-microscope"></i> Motivación Intrínseca:</strong> El deseo de ser el
+                            enfermero más capaz del servicio supera cualquier incentivo externo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <h3><i class="fas fa-tasks"></i> Actividad de Aplicación 1: El Adulto que Aprende</h3>
+                    <p><strong>Instrucción:</strong> Realizar un breve ensayo reflexivo (máximo 2 cuartillas) sobre cómo
+                        tu experiencia previa en el área clínica ha facilitado u obstaculizado el aprendizaje de una
+                        nueva técnica o protocolo institucional. Aplica al menos dos supuestos de Knowles en tu
+                        análisis.</p>
+                    <p><strong>Entregable:</strong> Documento PDF subido a la plataforma.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 2.1 -->
+            <section id="t2-1" class="content-section">
+                <img src="assets/learning_styles_visual_auditory_kinesthetic_1771818904425.png" class="hero-img"
+                    alt="Canales">
+                <h1>2.1 Canal Visual de Aprendizaje</h1>
+                <div class="info-block"><strong>Meta:</strong> Identificar e implementar estrategias visuales para la
+                    evaluación académica y profesional.</div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-image"></i> 2.1.1 Infografías</h3>
+                        <p><strong>Concepto:</strong> Herramienta de comunicación visual que combina imágenes y textos
+                            breves para simplificar la asimilación de datos complejos.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Utiliza jerarquía visual, iconos universales y una paleta de
+                                colores limitada para no saturar la atención.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-kit-medical"></i> Ejemplo:</strong> Una infografía pegada en la
+                            central de enfermería sobre los "Correctos en la Administración de Medicamentos".
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-project-diagram"></i> 2.1.2 Mapas Mentales</h3>
+                        <p><strong>Concepto:</strong> Técnica de organización radial basada en el funcionamiento
+                            cerebral, conectando una idea central con ramas subordinadas.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Emplea colores para cada rama y palabras clave en lugar de
+                                frases largas para favorecer la memoria fotográfica.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-brain"></i> Ejemplo:</strong> Mapa mental de la "Clasificación de
+                            Soluciones Intravenosas" (Isotónicas, Hipotónicas, Hipertónicas).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h3><i class="fas fa-random"></i> 2.1.3 Diagramas de Flujo</h3>
+                        <p><strong>Concepto:</strong> Representación gráfica de un algoritmo o proceso secuencial,
+                            facilitando la toma de decisiones estandarizadas.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Utiliza rombos para decisiones ("¿O2 < 90%?") y rectángulos
+                                    para acciones definitivas.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-route"></i> Ejemplo:</strong> Algoritmo de atención inmediata para
+                            un paciente con sospecha de Infarto Agudo al Miocardio (IAM).
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-highlighter"></i> 2.1.4 - 2.1.6 Técnicas de Discriminación</h3>
+                        <p><strong>Concepto (Subrayado):</strong> Selección visual de las ideas fundamentales de un
+                            texto para optimizar el tiempo de repaso futuro.</p>
+                        <p><strong>Concepto (Resumen):</strong> Síntesis escrita que condensa la información relevante
+                            manteniendo la fidelidad al autor original.</p>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-vial"></i> Ejemplo:</strong> Subrayar con colores (p. ej. rojo para
+                            valores de laboratorio críticos) una GPC sobre manejo de Insuficiencia Renal.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 2.1 Reading/Essay -->
+            <section id="t2-1-reading" class="content-section">
+                <h1>2.1 Tipos de Lectura y Ensayo</h1>
+                <div class="subtopic-header">2.1.7 Tipos de Lectura</div>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Lectura de Comprensión</h4>
+                        <p><strong>Concepto:</strong> Nivel de procesamiento donde se extrae el significado literal y se
+                            identifica la idea principal del texto.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Requiere vocabulario técnico y atención sostenida en la
+                                estructura lógica del autor.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-search"></i> Ejemplo:</strong> Leer una indicación médica compleja
+                            y entender exactamente la dosis y vía sin errores.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4>Lectura Crítica</h4>
+                        <p><strong>Concepto:</strong> Proceso analítico y evaluativo que cuestiona la validez, el sesgo
+                            y la relevancia de la información presentada.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Vital para la "Enfermería Basada en Evidencia" (EBE),
+                                contrastando resultados de distintos estudios.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-balance-scale"></i> Ejemplo:</strong> Analizar un nuevo protocolo
+                            de curación y decidir si es aplicable a tu unidad bajo criterios científicos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subtopic-header">2.1.8 El Ensayo Académico</div>
+                <div class="card">
+                    <p><strong>Concepto:</strong> Composición escrita en prosa que propone una postura personal
+                        fundamentada sobre un tema clínico o social.</p>
+                    <div class="grid-2">
+                        <div class="info-block">
+                            <strong>Estructura Vital:</strong><br>
+                            1. <strong>Introducción:</strong> El "Qué" y la Tesis.<br>
+                            2. <strong>Desarrollo:</strong> El "Por qué" (Argumentos).<br>
+                            3. <strong>Conclusión:</strong> El "Para qué" (Sustento final).
+                        </div>
+                        <div class="example-box">
+                            <strong><i class="fas fa-file-pen"></i> Ejemplo de TEMA:</strong> "El impacto de la
+                            humanización del cuidado en pacientes críticos: Una perspectiva desde el IMSS".
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 2.2 -->
+            <section id="t2-2" class="content-section">
+                <h1>2.2 Canal Auditivo de Aprendizaje</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-volume-up"></i> 2.2.1 - 2.2.2 Audio y Voz</h3>
+                        <p><strong>Concepto:</strong> Procesamiento de información a través del sistema auditivo,
+                            esencial para la retención mediante la escucha activa y la verbalización de ideas.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Involucra la grabación de clases, el uso de podcasts
+                                especializados y la lectura en voz alta para activar el bucle fonológico de la memoria.
+                            </li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-headphones"></i> Ejemplo:</strong> Escuchar un podcast sobre
+                            "Farmacología en Urgencias" durante el trayecto al hospital para una asimilación
+                            pasiva-activa.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-comments"></i> 2.2.3 - 2.2.4 Debate y Metáforas</h3>
+                        <p><strong>Concepto:</strong> Consolidación de conocimientos mediante el intercambio dialéctico
+                            y la analogía para traducir conceptos abstractos a contextos conocidos.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Dinámicas de grupo donde se cuestionan posturas y se crean
+                                comparaciones creativas (ej. "La célula es como una pequeña ciudad").</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-exchange-alt"></i> Ejemplo:</strong> Debatir la aplicación de una
+                            nueva técnica de vendaje en el enlace de turno, usando una metáfora profesional.
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3><i class="fas fa-puzzle-piece"></i> 2.2.5 Nemotecnias</h3>
+                    <p><strong>Concepto:</strong> Estrategias de asociación mental que facilitan el almacenamiento y
+                        recuperación de grandes cantidades de datos técnicos y secuencias.</p>
+                    <div class="example-box">
+                        <strong><i class="fas fa-lightbulb"></i> Acrónimos Clínicos:</strong> Ej: <strong>PQRST</strong>
+                        (Provoca, Qualidad, Región, Severidad, Tiempo) para la evaluación del dolor en el paciente.
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 2.3 -->
+            <section id="t2-3" class="content-section">
+                <h1>2.3 Canal Kinestésico y Social</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-theater-masks"></i> 2.3.1 - 2.3.2 Dramatización</h3>
+                        <p><strong>Concepto:</strong> Aprendizaje a través de la experiencia física y social, recreando
+                            situaciones reales para practicar respuestas técnicas y emocionales.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> El sociodrama aborda el lado humano, mientras que el
+                                Role-playing se enfoca en la ejecución de protocolos bajo estrés.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-heart-pulse"></i> Ejemplo:</strong> Role-playing de un "Código
+                            Rojo" para entrenar la comunicación asertiva y el liderazgo entre el equipo de enfermería.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-brain"></i> 2.3.3 Gimnasia Cerebral</h3>
+                        <p><strong>Concepto:</strong> Serie de ejercicios físicos y cognitivos que estimulan la
+                            neuroconectividad entre hemisferios para optimizar el foco y reducir el cortisol.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Basado en el método de Paul Dennison. Ejercicios como el
+                                "Gateo Cruzado" mejoran la lectura y la coordinación fina.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-gauge-high"></i> Ejemplo:</strong> Realizar 1 minuto de gimnasia
+                            cerebral antes de entrar a una cirugía compleja para centrar la atención.
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3><i class="fas fa-users-gear"></i> Estrategias de Colaboración</h3>
+                    <p><strong>Concepto:</strong> Metodologías grupales que aprovechan la inteligencia colectiva para la
+                        resolución de problemas y la toma de decisiones clínicas compartidas.</p>
+                    <div class="grid-2">
+                        <div class="info-block">
+                            <strong>Lluvia de Ideas:</strong> Generación libre de soluciones ante un problema de gestión
+                            o cuidado de enfermería.
+                        </div>
+                        <div class="info-block">
+                            <strong>Discusión Guiada:</strong> Análisis profundo de un caso clínico complejo coordinado
+                            por un experto o facilitador.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <h3><i class="fas fa-video"></i> Actividad de Aplicación 2: Simulación de Liderazgo</h3>
+                    <p><strong>Instrucción:</strong> En equipos de 3 personas, grabar un video (3-5 min) realizando la
+                        simulación de un protocolo crítico (ej. Recepción de paciente en choque). El video debe iniciar
+                        con una técnica de 1 minuto de "Gimnasia Cerebral" para preparar al equipo.</p>
+                    <p><strong>Entregable:</strong> Enlace a video (Drive/YouTube) o archivo MP4.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 3.1 -->
+            <section id="t3-1" class="content-section">
+                <h1>Tema 3: Metodologías de Procesamiento</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-list-ol"></i> 3.1 Método PQRST (Thomas y Robinson)</h3>
+                        <p><strong>Concepto:</strong> Técnica de estudio autogestionada diseñada para mejorar la
+                            comprensión lectora y la retención de información técnica mediante un proceso de cinco
+                            pasos lógicos.</p>
+                        <ul class="check-list" style="font-size: 0.85rem;">
+                            <li><strong>P (Preview):</strong> Inspección rápida de títulos y gráficos.</li>
+                            <li><strong>Q (Question):</strong> Transformar títulos en preguntas guía.</li>
+                            <li><strong>R (Read):</strong> Lectura activa para responder las preguntas.</li>
+                            <li><strong>S (State):</strong> Auto-explicación de lo leído en voz alta.</li>
+                            <li><strong>T (Test):</strong> Autoevaluación final sin consultar el texto.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-user-nurse"></i> Ejemplo:</strong> Usar PQRST para estudiar un
+                            nuevo manual de "Ventilación Mecánica"; primero miras las gráficas (P) y te preguntas
+                            cómo afecta el PEEP (Q).
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-balance-scale"></i> 3.2 Cuadro PNI (Edward de Bono)</h3>
+                        <p><strong>Concepto:</strong> Estrategia de pensamiento crítico que obliga a valorar una
+                            idea o situación desde tres ángulos distintos, evitando juicios precipitados.</p>
+                        <div class="info-block">
+                            <strong>P (Positivo):</strong> Beneficios y fortalezas.<br>
+                            <strong>N (Negativo):</strong> Riesgos y debilidades.<br>
+                            <strong>I (Interesante):</strong> Curiosidades o potencial futuro.
+                        </div>
+                        <div class="info-block"
+                            style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem; background: rgba(212, 175, 55, 0.1);">
+                            <strong><i class="fas fa-lightbulb"></i> Aplicación:</strong> Realizar un PNI sobre la
+                            implementación de un nuevo formato de registros electrónicos en el hospital.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 2rem;">
+                    <h3><i class="fas fa-table"></i> 3.3 Cuadro S.Q.A.</h3>
+                    <p><strong>Concepto:</strong> Herramienta metacognitiva que vincula los conocimientos previos
+                        con los nuevos objetivos de aprendizaje, cerrando el proceso con una reflexión de lo
+                        asimilado.</p>
+                    <table class="imss-table">
+                        <thead>
+                            <tr>
+                                <th>S (Sé) - Conocimientos Previos</th>
+                                <th>Q (Quiero) - Objetivos</th>
+                                <th>A (Aprendí) - Logros</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-size: 0.8rem; font-style: italic;">"Sé que el potasio alto es
+                                    peligroso..."</td>
+                                <td style="font-size: 0.8rem; font-style: italic;">"Quiero saber cómo tratar la
+                                    hiperkalemia..."</td>
+                                <td style="font-size: 0.8rem; font-style: italic;">"Aprendí el protocolo de cambio
+                                    polarizante..."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; font-style: italic;"><strong>Nota:</strong> El
+                        S.Q.A. es vital al inicio de cada rotación clínica para enfocar el esfuerzo de estudio.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 3.4-3.5 -->
+            <section id="t3-4" class="content-section">
+                <h1>3.4-3.5 Organizadores de Información</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-folder-tree"></i> 3.4 Cuadros Sinópticos y Comparativos</h3>
+                        <p><strong>Concepto (Sinóptico):</strong> Resumen esquemático que utiliza "llaves" para
+                            organizar ideas de lo general a lo particular, permitiendo una visión de conjunto del tema.
+                        </p>
+                        <p><strong>Concepto (Comparativo):</strong> Matriz que permite identificar semejanzas y
+                            diferencias entre dos o más elementos de estudio.</p>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-object-group"></i> Ejemplo:</strong> Cuadro comparativo entre
+                            "Choque Hipovolémico" y "Choque Cardiogénico" (Fisiopatología vs. Tratamiento).
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-diagram-project"></i> 3.5 Mapas Conceptuales</h3>
+                        <p><strong>Concepto:</strong> Joseph Novak. Red de conceptos conectados mediante palabras de
+                            enlace que expresan proposiciones y relaciones jerárquicas complejas.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Se diferencia del mapa mental en que su estructura es
+                                jerárquica (arriba-abajo) y usa conectores lógicos ("es un", "produce", "afecta").</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-network-wired"></i> Ejemplo:</strong> Mapa conceptual del "Sistema
+                            Renina-Angiotensina-Aldosterona" para entender la regulación de la TA.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <h3><i class="fas fa-diagram-project"></i> Actividad de Aplicación 3: Ingeniería del Conocimiento
+                    </h3>
+                    <p><strong>Instrucción:</strong> Elaborar un Mapa Conceptual jerárquico (estilo Novak) sobre una
+                        patología de alta prevalencia en su servicio. Debe incluir al menos 10 conceptos interconectados
+                        con palabras de enlace lógicas.</p>
+                    <p><strong>Entregable:</strong> Imagen (PNG/JPG) o PDF del mapa conceptual.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 4.1 -->
+            <section id="t4-1" class="content-section">
+                <img src="assets/med_tech_future_education_1771818917365.png" class="hero-img" alt="Tecnología">
+                <h1>4.1 TIC: Infraestructura de la Información</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-microchip"></i> 4.1.1 - 4.1.3 Fundamentos de las TIC</h3>
+                        <p><strong>Concepto:</strong> Tecnologías de la Información y Comunicación; conjunto de
+                            recursos, herramientas y programas que se utilizan para procesar, administrar y compartir la
+                            información.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Hardware (dispositivos móviles, PC) y conectividad (Internet,
+                                redes 5G) que habilitan el acceso al saber universal.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-server"></i> Ejemplo:</strong> El uso de una tablet en sala para
+                            consultar rápidamente el vademécum o la GPC vigente.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-cloud"></i> 4.1.4 - 4.1.5 Comunicación y Nube</h3>
+                        <p><strong>Concepto:</strong> Servicios de almacenamiento y gestión de procesos externos al
+                            dispositivo local, permitiendo la portabilidad y seguridad de la información académica.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Uso de Google Drive, OneDrive o iCloud para respaldar tareas y
+                                protocolos, garantizando que el material esté disponible en cualquier guardia.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-upload"></i> Ejemplo:</strong> Subir tus resúmenes de estudio a la
+                            nube para repasarlos desde tu celular durante un tiempo muerto en la unidad.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 4.2 -->
+            <section id="t4-2" class="content-section">
+                <h1>4.2 TAC: Tecnologías de Aprendizaje y Conocimiento</h1>
+                <p>Uso pedagógico de las herramientas digitales.</p>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4><i class="fas fa-graduation-cap"></i> 4.2.2 - 4.2.4 Realidad e Interacción</h4>
+                        <p><strong>Concepto:</strong> Uso pedagógico de las TIC donde la tecnología se subordina al
+                            aprendizaje, convirtiéndose en un vehículo del conocimiento y no solo en un medio.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Incluye Realidad Aumentada (AR) para anatomía 3D y
+                                gamificación (Kahoot) para autoevaluación lúdica.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-vr-cardboard"></i> Ejemplo:</strong> Usar una App de realidad
+                            aumentada para visualizar el sistema circulatorio antes de una práctica de punción.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-robot"></i> 4.2.7 - 4.2.9 IA y Plataformas</h4>
+                        <p><strong>Concepto:</strong> Aplicación de algoritmos y sistemas digitales para personalizar el
+                            aprendizaje y gestionar entornos virtuales de enseñanza-aprendizaje (LMS).</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Moodle, Classroom y simuladores clínicos que permiten
+                                practicar procedimientos en entornos seguros y controlados.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-laptop-code"></i> Ejemplo:</strong> Practicar la dosificación de
+                            aminas en un simulador digital antes de enfrentarse a la situación real por primera vez.
+                        </div>
+                    </div>
+                </div>
+                <div class="info-block accent">
+                    "La evaluación digital educativa es un reto constante." - Demera et al. (2023).
+                </div>
+            </section>
+
+            <!-- SECTION: Tema 4.3 -->
+            <section id="t4-3" class="content-section">
+                <h1>4.3 TEP: Empoderamiento y Participación</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-mobile-screen"></i> 4.3.1 Ambientes Virtuales (AVA)</h3>
+                        <p><strong>Concepto:</strong> Tecnologías para el Empoderamiento y la Participación; el uso de
+                            herramientas digitales para incidir en la realidad, crear comunidad y profesionalizar el
+                            saber.</p>
+                        <ul class="check-list">
+                            <li><strong>E-learning / B-learning:</strong> Modalidades que permiten la formación continua
+                                a pesar de las cargas laborales del IMSS.</li>
+                        </ul>
+                        <div class="info-block" style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem;">
+                            <strong><i class="fas fa-users-viewfinder"></i> Ejemplo:</strong> Participar en grupos de
+                            investigación en redes profesionales o publicar hallazgos en blogs especializados.
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-quote-right"></i> 4.4 El Rigor del APA (7ma Ed.)</h3>
+                        <p><strong>Concepto:</strong> Sistema de citación y referenciación que garantiza la integridad
+                            académica y el reconocimiento de la autoría intelectual en la producción científica.</p>
+                        <ul class="check-list">
+                            <li><strong>Detalle:</strong> Es la norma estándar para el Postécnico, asegurando que tus
+                                trabajos tengan validez oficial y profesional.</li>
+                        </ul>
+                        <div class="info-block"
+                            style="font-size: 0.85rem; padding: 1rem; margin-top: 1rem; background: rgba(212, 175, 55, 0.1);">
+                            <strong><i class="fas fa-book-bookmark"></i> Ejemplo:</strong> Citar una GPC del CENETEC
+                            usando el formato: (CENETEC, 2023) y anexar la referencia completa al final.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <h3><i class="fas fa-laptop-medical"></i> Actividad de Aplicación 4: Investigación y Rigor APA</h3>
+                    <p><strong>Instrucción:</strong> Realizar una búsqueda bibliográfica sobre un avance tecnológico en
+                        enfermería. Presentar un resumen de 3 párrafos utilizando al menos 2 citas textuales e
+                        incluyendo la bibliografía completa en formato APA 7ma Edición.</p>
+                    <p><strong>Entregable:</strong> Documento de Word o PDF.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Evaluation -->
+            <section id="evaluation" class="content-section">
+                <h1>Criterios de Evaluación</h1>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Esquema de Calificación</h3>
+                        <table class="imss-table">
+                            <thead>
+                                <tr>
+                                    <th>Actividad</th>
+                                    <th>Peso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Examen Parcial</td>
+                                    <td style="text-align: center;">30%</td>
+                                </tr>
+                                <tr>
+                                    <td>Exposición</td>
+                                    <td style="text-align: center;">30%</td>
+                                </tr>
+                                <tr>
+                                    <td>Tareas Individuales</td>
+                                    <td style="text-align: center;">40%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h3>Requisitos Reglamentarios</h3>
+                        <p><strong>Asistencia:</strong> Mínimo 80% (Máximo 20% inasistencias).</p>
+                        <p><strong>Entrega:</strong> Organizadores visuales, Prototipos, Vídeo Educativo.</p>
+                        <div class="info-block" style="border-left-color: red;">
+                            Incumplir asistencia lleva a examen extraordinario según reglamento.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
