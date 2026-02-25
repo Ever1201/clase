@@ -566,6 +566,314 @@ li {
     display: block;
 }
 
+/* --- Visual Examples CSS (Tema 2) --- */
+/* Infographics */
+.visual-infographic {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--glass-bg);
+    padding: 1rem;
+    border-radius: 12px;
+    border-left: 5px solid var(--accent);
+}
+
+.visual-infographic .icon-box {
+    background: var(--primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
+/* Mind Map */
+.mind-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+}
+
+.mm-center {
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+}
+
+.mm-branches {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.mm-node {
+    background: white;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 2px solid var(--primary-light);
+    font-size: 0.85rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+    flex: 1;
+    max-width: 130px;
+}
+
+.mm-node::before {
+    content: "↑";
+    display: block;
+    color: var(--accent);
+    margin-bottom: 4px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Flowchart */
+.flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    border: 1px dashed var(--accent);
+}
+
+.fc-box {
+    background: white;
+    border: 2px solid var(--primary);
+    color: var(--primary-dark);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.fc-decision {
+    background: #fff3cd;
+    border: 2px dashed #d4af37;
+    color: #856404;
+    padding: 0.8rem 1.2rem;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.fc-arrow {
+    color: var(--accent);
+    font-size: 1.5rem;
+    line-height: 0.5;
+}
+
+/* Audio Player */
+.audio-player {
+    background: var(--primary-dark);
+    color: white;
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+.audio-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.audio-btn:hover {
+    transform: scale(1.05);
+}
+
+.audio-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.audio-progress {
+    width: 45%;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+}
+
+/* Chat Bubbles (Debate) */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.chat-bubble {
+    padding: 0.8rem 1.2rem;
+    border-radius: 15px;
+    max-width: 85%;
+    font-size: 0.9rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.chat-left {
+    background: white;
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 0;
+    align-self: flex-start;
+    color: var(--text-main);
+}
+
+.chat-right {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    border: 1px solid var(--border);
+    border-bottom-right-radius: 0;
+    align-self: flex-end;
+}
+
+/* Acronym / Nemotecnia */
+.acronym-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.acronym-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: white;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border-left: 5px solid var(--accent);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s;
+}
+
+.acronym-item:hover {
+    transform: translateX(5px);
+}
+
+.acronym-item dt {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    width: 40px;
+    text-align: center;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.acronym-item dd {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin: 0;
+    flex: 1;
+}
+
+/* Roleplay Timeline */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 2rem 2rem 4rem 2rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: calc(2rem + 22px);
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: var(--primary-light);
+    z-index: 1;
+}
+
+.tl-step {
+    position: relative;
+    z-index: 2;
+    background: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1.2rem;
+    background: var(--primary-light);
+}
+
+.tl-step.active {
+    border-color: #e53e3e;
+    color: #e53e3e;
+    background: #fff5f5;
+}
+
+.tl-label {
+    position: absolute;
+    top: 55px;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 1.3;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-main);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 6px;
+    border-radius: 4px;
+    min-width: 120px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .grid-2 {
