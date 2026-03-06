@@ -885,8 +885,62 @@ li {
     }
 
     aside {
+        position: fixed;
+        left: -320px;
+        top: 0;
+        bottom: 0;
+        width: 300px;
+        z-index: 9999;
+        transition: left 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard.sidebar-open aside {
+        left: 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-meta .badge {
         display: none;
     }
 
-    /* Could add a mobile menu later */
+    main {
+        padding: 1.5rem 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .info-block {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
+    .assignment-card {
+        padding: 1.5rem;
+    }
+
+    .assignment-card::after {
+        opacity: 0.02;
+    }
+
+    .timeline {
+        flex-direction: column;
+        gap: 2rem;
+        padding-top: 1rem;
+    }
+
+    .timeline::before {
+        display: none;
+    }
+
+    .hero-img {
+        height: 200px;
+    }
 }

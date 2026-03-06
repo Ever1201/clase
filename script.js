@@ -25,6 +25,11 @@ function showSection(sectionId) {
 
     // Update progress (rough estimate based on total sections)
     updateProgress(sectionId);
+
+    // Auto-close sidebar on mobile after selection
+    if (window.innerWidth <= 1024) {
+        document.querySelector('.dashboard').classList.remove('sidebar-open');
+    }
 }
 
 function updateProgress(sectionId) {
@@ -53,5 +58,9 @@ window.onload = () => {
 };
 
 function toggleSidebar() {
-    document.querySelector('.dashboard').classList.toggle('sidebar-hidden');
+    if (window.innerWidth <= 1024) {
+        document.querySelector('.dashboard').classList.toggle('sidebar-open');
+    } else {
+        document.querySelector('.dashboard').classList.toggle('sidebar-hidden');
+    }
 }
