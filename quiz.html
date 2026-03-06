@@ -19,7 +19,10 @@
             justify-content: center;
             align-items: flex-start;
             /* Permite hacer scroll al top del contenido si es muy largo */
-            min-height: 100vh;
+            min-height: 100dvh;
+            /* Actualizado a dvh */
+            width: 100dvw;
+            overflow-x: hidden;
             overflow-y: auto !important;
             /* Sobreescribe el overflow: hidden de style.css */
             height: auto !important;
@@ -31,7 +34,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             max-width: 800px;
-            width: 90%;
+            width: 90dvw;
             padding: 3rem;
             position: relative;
             overflow: hidden;
@@ -254,7 +257,7 @@
         @media (max-width: 768px) {
             .quiz-container {
                 padding: 1.5rem;
-                width: 95%;
+                width: 95dvw;
                 margin: 1rem 0;
             }
 
@@ -315,8 +318,10 @@
                 <div class="progress-bar-fill" id="progress-bar"></div>
             </div>
 
-            <p style="text-align: right; color: #718096; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;"
-                id="question-counter">Pregunta 1 de 5</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <p style="color: var(--primary); font-weight: 700; font-size: 1.1rem; margin: 0;" id="question-counter">
+                    Pregunta 1 de 20</p>
+            </div>
 
             <div class="question-text" id="question-text">
                 <!-- Question goes here -->
@@ -634,6 +639,14 @@
         const justificationText = document.getElementById('justification-text');
         const nextBtn = document.getElementById('next-btn');
 
+        // Función para revolver (shuffle) el arreglo de forma aleatoria (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
         function loadQuestion() {
             // Reset state
             justificationBox.style.display = 'none';
@@ -765,7 +778,8 @@
             window.scrollTo(0, 0);
         }
 
-        // Initialize quiz
+        // Initialize quiz: Revolvemos las preguntas antes de empezar
+        shuffleArray(quizData);
         loadQuestion();
     </script>
 </body>

@@ -38,7 +38,10 @@ body {
     background: var(--bg-main);
     color: var(--text-main);
     overflow: hidden;
-    height: 100vh;
+    height: 100dvh;
+    /* Updated to dvh */
+    width: 100dvw;
+    overflow-x: hidden;
 }
 
 /* Dashboard Layout */
@@ -46,7 +49,9 @@ body {
     display: grid;
     grid-template-columns: var(--sidebar-width) 1fr;
     grid-template-rows: var(--header-height) 1fr;
-    height: 100vh;
+    height: 100dvh;
+    /* Updated to dvh */
+    width: 100dvw;
     transition: grid-template-columns 0.3s ease;
 }
 
@@ -178,7 +183,8 @@ header {
 .header-meta {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
+    /* Aumentado para dar mas aire a los badges y el logo */
 }
 
 /* Main Titles and Typography */
@@ -231,7 +237,8 @@ main {
     /* Keep fixed in the viewport area */
     z-index: 0;
     pointer-events: none;
-    opacity: 0.25;
+    opacity: 0.12;
+    /* Reducida la opacidad para que no compita visualmente con el texto */
     width: 250px;
     transition: left 0.3s ease;
     /* Match sidebar animation */
@@ -911,10 +918,13 @@ li {
 
     main {
         padding: 1.5rem 1rem;
+        overflow-x: hidden;
     }
 
     .card {
         padding: 1.5rem;
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .info-block {
@@ -924,6 +934,7 @@ li {
 
     .assignment-card {
         padding: 1.5rem;
+        width: 100%;
     }
 
     .assignment-card::after {
@@ -942,5 +953,13 @@ li {
 
     .hero-img {
         height: 200px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .imss-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 }
