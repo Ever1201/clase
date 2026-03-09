@@ -2,7 +2,7 @@ import qrcode
 import os
 
 # Cambia esta URL si el enlace final donde alojas el examen es distinto
-url_del_examen = "https://ever1201.github.io/Clase/examen_final_qr.html"
+url_del_examen = "https://ever1201.github.io/clase/examen_final_qr.html"
 
 print(f"Generando Código QR para: {url_del_examen} ...")
 
