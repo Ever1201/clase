@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Final - Estrategias de Aprendizaje</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2b6cb0;
+            --primary-dark: #2c5282;
+            --secondary: #ecc94b;
+            --accent: #e53e3e;
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .header img {
+            max-width: 120px;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            margin: 0 0 0.5rem 0;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .question h3 {
+            font-size: 1.1rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background: #edf2f7;
+        }
+
+        .option-label input {
+            margin-right: 10px;
+        }
+
+        button.submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button.submit-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        button.submit-btn:disabled {
+            background-color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .success-message i {
+            font-size: 4rem;
+            color: #38a169;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h2 {
+            color: var(--primary-dark);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="exam-container">
+        <div class="header">
+            <img src="assets/logoimss.png" alt="IMSS" onerror="this.style.display='none'">
+            <h1>Evaluación Final</h1>
+            <p class="subtitle">Curso Postécnico de Enfermería - Estrategias de Aprendizaje</p>
+        </div>
+
+        <form id="exam-form">
+            <div class="form-group">
+                <label for="student-name"><i class="fas fa-user"></i> Nombre Completo del Alumno:</label>
+                <input type="text" id="student-name" name="student-name" placeholder="Ej. Juan Pérez García" required>
+            </div>
+
+            <!-- Preguntas -->
+            <div id="questions-container">
+                <!-- Generado por JS -->
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+                <i class="fas fa-paper-plane"></i> Enviar Respuestas
+            </button>
+            <div class="loading" id="loading-indicator">
+                <i class="fas fa-spinner fa-spin"></i> Guardando y enviando resultados...
+            </div>
+        </form>
+    </div>
+
+    <!-- Mensaje de éxito (Oculto inicialmente) -->
+    <div class="container success-message" id="success-container">
+        <i class="fas fa-check-circle"></i>
+        <h2>¡Evaluación Completada!</h2>
+        <p>Tus respuestas han sido registradas exitosamente.</p>
+        <p>Puedes cerrar esta pestaña.</p>
+    </div>
+
+    <script>
+        // CONFIGURAR AQUÍ LA URL DEL WEB APP DE GOOGLE APPS SCRIPT
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzvgynwBEto1v0S1QzRfz8P3AS-oBjnI_R1LhFZcDxCgbwm8UqwXCdBGZrr3sNqb5nJ/exec";
+
+        const questionsData = [
+            {
+                q: "(Tema 1.1) ¿Cuáles son los cuatro pilares de la educación propuestos por la UNESCO?",
+                options: ["Aprender a conocer, hacer, ser y vivir juntos", "Aprender a leer, escribir, sumar y restar", "Aprender a competir, memorizar, evaluar y ganar", "Aprender a trabajar, descansar, estudiar y jugar"],
+                answer: 0
+            },
+            {
+                q: "(Tema 1.2) ¿En qué consiste principalmente la Técnica Pomodoro?",
+                options: ["Estudiar 4 horas seguidas sin descanso", "Intervalos de atención enfocada (ej. 25 min) y pausas breves", "Hacer resúmenes visuales con colores", "Escuchar audios mientras se duerme"],
+                answer: 1
+            },
+            {
+                q: "(Tema 1.2) ¿Cómo organiza las tareas el Sistema Kanban?",
+                options: ["En orden alfabético", "De lo más difícil a lo más fácil", "En columnas: Por hacer, En curso y Finalizado", "Por la cantidad de páginas a leer"],
+                answer: 2
+            },
+            {
+                q: "(Tema 1.2) ¿Cuál es la estructura básica del Método Cornell para tomar apuntes?",
+                options: ["Dividir la hoja en tres: Pistas, Notas y Resumen", "Subrayar todo el texto con diferentes colores", "Hacer un dibujo por cada concepto importante", "Escribir exclusivamente en mayúsculas"],
+                answer: 0
+            },
+            {
+                q: "(Tema 1.4) Según la Matriz de Eisenhower, ¿qué nivel de prioridad tiene el estudio preventivo para evitar crisis?",
+                options: ["Urgente e Importante", "No Urgente pero Importante", "Urgente pero No Importante", "No Urgente y No Importante"],
+                answer: 1
+            },
+            {
+                q: "(Tema 1.6) ¿Cómo se le llama a la disciplina que se ocupa del aprendizaje de los adultos?",
+                options: ["Pedagogía", "Andragogía", "Psicología evolutiva", "Didáctica infantil"],
+                answer: 1
+            },
+            {
+                q: "(Tema 2.1) ¿Qué herramienta interactiva se estructura de forma jerárquica uniendo conceptos con palabras de enlace?",
+                options: ["Mapa mental", "Lluvia de ideas", "Mapa conceptual", "Cuadro sinóptico"],
+                answer: 2
+            },
+            {
+                q: "(Tema 2.1) ¿Cuál técnica visual utiliza un diagrama radial con colores e imágenes partiendo desde una idea central?",
+                options: ["Mapa mental", "Ensayo", "Línea del tiempo", "Cuadro comparativo"],
+                answer: 0
+            },
+            {
+                q: "(Tema 2.2) ¿Qué ventaja ofrece la Lectura en Voz Alta como estrategia auditiva?",
+                options: ["Ayuda a dormir a los pacientes más rápido", "Solo sirve para aprender un idioma distinto", "Activa el bucle fonológico y reduce la fatiga mental", "Permite leer muchas páginas sumamente rápido"],
+                answer: 2
+            },
+            {
+                q: "(Tema 2.2) ¿A qué se le denomina una Nemotecnia?",
+                options: ["Una enfermedad cerebral de la memoria", "Un resumen rápido en una ficha técnica", "Una aplicación digital médica", "Una técnica de asociación mental usando acrónimos"],
+                answer: 3
+            },
+            {
+                q: "(Tema 2.3) El canal kinestésico en el aprendizaje se basa principalmente en:",
+                options: ["Disertaciones orales largas", "Movimiento físico, manipulación, experimentación y práctica", "Concentración únicamente con música clásica", "Presentar las actividades en power point"],
+                answer: 1
+            },
+            {
+                q: "(Tema 2.3) Para resolver un problema grupal, ¿cuál es el objetivo de la técnica Lluvia de Ideas?",
+                options: ["Emitir la mayor cantidad de opciones sin censura ni juicios al inicio", "Juzgar las alternativas inmediatamente rechazando las incorrectas", "Hallar inmediatamente la respuesta correcta del problema", "Forzar a que cada quien responda la respuesta por su cuenta"],
+                answer: 0
+            },
+            {
+                q: "(Tema 3.1) ¿Cuál de estos NO es un componente del Método PQRST para estudio bibliográfico?",
+                options: ["Revisión previa (Preview)", "Formular preguntas (Question)", "Subrayar ideas en rojo (Redline)", "Autoevaluación (Test)"],
+                answer: 2
+            },
+            {
+                q: "(Tema 3.2) En el Cuadro PNI de De Bono para analizar ideas, las letras corresponden a Positivo, Negativo y...",
+                options: ["Interrogante", "Interesante", "Inicial", "Inventado"],
+                answer: 1
+            },
+            {
+                q: "(Tema 3.3) ¿En qué consiste organizar la información en un cuadro S.Q.A.?",
+                options: ["Calcular la variabilidad con Sensibilidad, Rango, Promedio", "Vincular el tema con: Lo que Sé, lo que Quiero saber, lo que Aprendí", "Formar un glosario con Sufijos, Quejas, Alertas", "Sintetizar historia del hospital mediante fechas cronológicas"],
+                answer: 1
+            },
+            {
+                q: "(Tema 3.4) ¿Qué metodología utiliza una matriz de doble entrada para registrar semejanzas y diferencias entre distintos temas?",
+                options: ["Línea del tiempo", "Mapa mental", "Cuadro comparativo", "Ensayo reflexivo"],
+                answer: 2
+            },
+            {
+                q: "(Tema 4.1) ¿Qué significan las siglas TIC en el ámbito tecnológico?",
+                options: ["Talleres Iniciales Constructivos", "Tecnologías Integradas por Casos", "Tecnologías de la Información y Comunicación", "Tecnologias Interactivos Cientificos"],
+                answer: 2
+            },
+            {
+                q: "(Tema 4.1) Google Drive y OneDrive, que nos permiten guardar y recuperar documentos de forma online, son ejemplos de:",
+                options: ["Servicios en la nube", "Programas de edición", "Módulos PNI", "Líneas cronológicas visuales"],
+                answer: 0
+            },
+            {
+                q: "(Tema 4.2) Cuando usamos las tecnologías específicamente para enfocarlas en el desarrollo educativo de competencias, hablamos de tecnologías...",
+                options: ["TIC", "TAC (Tecnologías de Aprendizaje y Conocimiento)", "TEP", "TLM"],
+                answer: 1
+            },
+            {
+                q: "(Tema 4.3) Plataformas colaborativas, creación de blogs, y trabajo virtual activo donde el alumno interactúa masivamente pertenecen a tecnologías...",
+                options: ["TEP (Tecnologías para el Empoderamiento y la Participación)", "TAC", "TIC", "Ninguna de las anteriores"],
+                answer: 0
+            }
+        ];
+
+        // Función para desordenar un arreglo (Fisher-Yates) preservando el índice original para validación
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        const container = document.getElementById('questions-container');
+
+        // Procesar las preguntas
+        questionsData.forEach((item, index) => {
+            let optionsObj = item.options.map((opt, i) => ({ text: opt, originalIndex: i }));
+            // Desordenar opciones
+            optionsObj = shuffle(optionsObj);
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `<h3>${index + 1}. ${item.q}</h3>`;
+
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'options';
+
+            optionsObj.forEach(opt => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                label.innerHTML = `
+                    <input type="radio" name="q${index}" value="${opt.originalIndex}" required>
+                    ${opt.text}
+                `;
+                optionsDiv.appendChild(label);
+            });
+
+            questionDiv.appendChild(optionsDiv);
+            container.appendChild(questionDiv);
+        });
+
+        // Manejador del form
+        document.getElementById('exam-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('submit-btn');
+            const loading = document.getElementById('loading-indicator');
+            btn.disabled = true;
+            loading.style.display = 'block';
+
+            const formData = new FormData(this);
+            const studentName = formData.get('student-name');
+
+            let correctas = 0;
+            let incorrectas = 0;
+            let respuestasUsuario = {};
+
+            questionsData.forEach((item, index) => {
+                const userAnswer = parseInt(formData.get(`q${index}`));
+                const qText = `P${index + 1}`;
+
+                let isCorrect = (userAnswer === item.answer);
+                respuestasUsuario[qText] = isCorrect ? "Correcto" : "Incorrecto";
+
+                if (isCorrect) correctas++;
+                else incorrectas++;
+            });
+
+            // Calificación en base 100
+            let calificacionFinal = (correctas / questionsData.length) * 100;
+
+            // Preparar objeto a enviar
+            const payload = {
+                nombre: studentName,
+                correctas: correctas,
+                incorrectas: incorrectas,
+                calificacion: calificacionFinal.toFixed(2),
+                ...respuestasUsuario
+            };
+
+            // Enviar a Google Apps Script
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            }).then(() => {
+                document.getElementById('exam-container').style.display = 'none';
+                document.getElementById('success-container').style.display = 'block';
+                window.scrollTo(0, 0);
+            }).catch(error => {
+                // Incluso si falla CORS, 'no-cors' resolverá la promesa, pero si ocurre un fallo de red real:
+                console.error("Error al enviar:", error);
+                alert("Hubo un error de conexión enviando el resultado. Por favor intenta nuevamente.");
+                btn.disabled = false;
+                loading.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

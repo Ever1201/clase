@@ -1,0 +1,790 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Final - Estrategias de Aprendizaje</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            /* Permite hacer scroll al top del contenido si es muy largo */
+            min-height: 100dvh;
+            /* Actualizado a dvh */
+            width: 100dvw;
+            overflow-x: hidden;
+            overflow-y: auto !important;
+            /* Sobreescribe el overflow: hidden de style.css */
+            height: auto !important;
+            box-sizing: border-box;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 90dvw;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-header img {
+            max-width: 120px;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-dark, #1a365d);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-header p {
+            color: var(--text-muted, #718096);
+        }
+
+        .progress-bar-container {
+            background: #e2e8f0;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            background: var(--primary, #2b6cb0);
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-main, #2d3748);
+            margin-bottom: 1.5rem;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .option-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-btn:hover {
+            border-color: var(--primary, #2b6cb0);
+            background: #edf2f7;
+            transform: translateY(-2px);
+        }
+
+        .option-btn.selected-correct {
+            background: #c6f6d5;
+            border-color: #38a169;
+            color: #22543d;
+        }
+
+        .option-btn.selected-wrong {
+            background: #fed7d7;
+            border-color: #e53e3e;
+            color: #742a2a;
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .justification-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: none;
+            animation: slideDown 0.4s ease forwards;
+        }
+
+        .justification-box.correct {
+            background: #f0fff4;
+            border-left: 5px solid #38a169;
+        }
+
+        .justification-box.wrong {
+            background: #fff5f5;
+            border-left: 5px solid #e53e3e;
+        }
+
+        .justification-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .justification-box.correct .justification-title {
+            color: #276749;
+        }
+
+        .justification-box.wrong .justification-title {
+            color: #9b2c2c;
+        }
+
+        .next-btn {
+            background: var(--primary, #2b6cb0);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            float: right;
+            margin-top: 1.5rem;
+            display: none;
+            font-family: inherit;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background: var(--primary-dark, #1a365d);
+        }
+
+        .score-container {
+            text-align: center;
+            display: none;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #edf2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary, #2b6cb0);
+            border: 8px solid var(--primary, #2b6cb0);
+        }
+
+        .review-container {
+            display: none;
+            text-align: left;
+            margin-top: 2rem;
+            animation: slideDown 0.5s ease;
+        }
+
+        .review-item {
+            background: #f7fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .review-question {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .review-answer {
+            color: #38a169;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-justification {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            background: #e6fffa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            border: 1px solid #b2f5ea;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .quiz-container {
+                padding: 1.5rem;
+                width: 95dvw;
+                margin: 1rem 0;
+            }
+
+            .quiz-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .quiz-header img {
+                max-width: 80px;
+            }
+
+            .question-text {
+                font-size: 1.15rem;
+                margin-bottom: 1rem;
+            }
+
+            .option-btn {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+
+            .next-btn {
+                width: 100%;
+                float: none;
+                margin-top: 1rem;
+                padding: 0.8rem;
+            }
+
+            .score-circle {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+                border-width: 5px;
+            }
+
+            .review-item {
+                padding: 1rem;
+            }
+
+            .review-question {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz-container">
+        <div class="quiz-header" id="quiz-header">
+            <img src="assets/logoimss.png" alt="Logo IMSS" onerror="this.style.display='none'">
+            <h1>Examen Final</h1>
+            <p>Estrategias de Aprendizaje en Enfermería</p>
+        </div>
+
+        <div id="quiz-content">
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <p style="color: var(--primary); font-weight: 700; font-size: 1.1rem; margin: 0;" id="question-counter">
+                    Pregunta 1 de 10</p>
+            </div>
+
+            <div class="question-text" id="question-text">
+                <!-- Question goes here -->
+            </div>
+
+            <div class="options-grid" id="options-grid">
+                <!-- Options go here -->
+            </div>
+
+            <div class="justification-box" id="justification-box">
+                <div class="justification-title" id="justification-title"></div>
+                <div class="justification-text" id="justification-text"></div>
+            </div>
+
+            <button class="next-btn" id="next-btn" onclick="nextQuestion()">Siguiente <i
+                    class="fas fa-arrow-right"></i></button>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div class="score-container" id="score-container">
+            <h1>¡Evaluación Completada!</h1>
+            <p style="font-size: 1.2rem; color: #4a5568; margin-bottom: 2rem;">Aquí está tu resultado final:</p>
+            <div class="score-circle" id="score-circle">
+                0/5
+            </div>
+            <h3 id="score-message" style="color: var(--primary-dark); margin-bottom: 2rem;"></h3>
+            <button class="next-btn" style="display: inline-block; float: none;"
+                onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Volver al Inicio</button>
+            <button class="next-btn" style="display: inline-block; float: none; background: #38a169; margin-left: 1rem;"
+                onclick="showReview()"><i class="fas fa-list-check"></i> Ver Respuestas</button>
+            <button class="next-btn" style="display: inline-block; float: none; background: #4a5568; margin-left: 1rem;"
+                onclick="location.reload()"><i class="fas fa-redo"></i> Reintentar</button>
+        </div>
+
+        <div class="review-container" id="review-container">
+            <h2 style="color: var(--primary-dark); margin-bottom: 1.5rem; text-align: center;">Repaso de Conocimientos
+            </h2>
+            <p style="text-align: center; color: #718096; margin-bottom: 2rem;">Revisa las respuestas correctas de todas
+                las preguntas.</p>
+            <div id="review-content"></div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="next-btn" style="display: inline-block; float: none;"
+                    onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Volver al Inicio</button>
+                <button class="next-btn"
+                    style="display: inline-block; float: none; background: #4a5568; margin-left: 1rem;"
+                    onclick="location.reload()"><i class="fas fa-redo"></i> Reintentar Quiz</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const quizData = [
+            // Tema 1.1: Aprender a Conocer
+            {
+                question: "¿Qué pilar de la educación consiste en adquirir destrezas y habilidades para trabajar en equipo (por ejemplo, saber aspirar secreciones)?",
+                options: [
+                    "Aprender a Conocer",
+                    "Aprender a Hacer",
+                    "Aprender a Vivir Juntos",
+                    "Aprender a Ser"
+                ],
+                correctIndex: 1,
+                justificationRight: "¡Excelente! 'Aprender a Hacer' se refiere a la parte práctica y al desarrollo de habilidades clínicas.",
+                justificationWrong: "La parte práctica y manual de nuestra profesión se enfoca en el pilar 'Aprender a Hacer'."
+            },
+            {
+                question: "¿Qué pilar de la educación se enfoca en la ética, la autonomía y la personalidad del enfermero?",
+                options: [
+                    "Aprender a Conocer",
+                    "Aprender a Hacer",
+                    "Aprender a Ser",
+                    "Aprender a Vivir Juntos"
+                ],
+                correctIndex: 2,
+                justificationRight: "¡Correcto! 'Aprender a Ser' trata sobre nuestros valores, ética y crecimiento personal.",
+                justificationWrong: "Es 'Aprender a Ser'. Este pilar trata sobre quiénes somos como profesionales éticos y responsables."
+            },
+            // Tema 1.2: Métodos de Estudio
+            {
+                question: "¿Cuál es el método de estudio que usa un reloj para estudiar por 25 minutos y descansar 5 minutos?",
+                options: [
+                    "Método Cornell",
+                    "Técnica Pomodoro",
+                    "Mapa Mental",
+                    "Sistema Kanban"
+                ],
+                correctIndex: 1,
+                justificationRight: "¡Exacto! El Pomodoro nos ayuda a no cansarnos mentalmente estudiando en bloques cortos.",
+                justificationWrong: "El método que usa tiempos cortos de enfoque y pausas es la Técnica Pomodoro."
+            },
+            {
+                question: "¿Qué método para tomar apuntes divide la hoja en 3 partes: 'Pistas', 'Notas' y 'Resumen'?",
+                options: [
+                    "Sistema Kanban",
+                    "Método Pomodoro",
+                    "Método Cornell",
+                    "Esquema de llaves"
+                ],
+                correctIndex: 2,
+                justificationRight: "¡Correcto! El Método Cornell es fantástico para tomar notas ordenadas y fáciles de repasar.",
+                justificationWrong: "La técnica de dividir la hoja para tomar apuntes es el Método Cornell."
+            },
+            // Tema 1.3 / 1.4: Hábito y Gestión
+            {
+                question: "Para formar un hábito de estudio fuerte, ¿cuáles son los 3 pasos de nuestro cerebro (Bucle Neurológico)?",
+                options: [
+                    "Motivación, Acción y Resultado",
+                    "Planear, Hacer y Revisar",
+                    "Señal, Rutina y Recompensa",
+                    "Leer, Escribir y Repasar"
+                ],
+                correctIndex: 2,
+                justificationRight: "¡Muy bien! Todo hábito empieza con una Señal, seguimos con la Rutina (estudiar) y terminamos con una Recompensa.",
+                justificationWrong: "Para crear un hábito el cerebro usa: 1) Señal, 2) Rutina, 3) Recompensa."
+            },
+            {
+                question: "Según la Matriz del tiempo, ¿qué tipo de actividad es estudiar para el Postécnico, sabiendo que no es para mañana pero nos ayuda a crecer?",
+                options: [
+                    "Urgente e Importante",
+                    "No Urgente pero Importante",
+                    "Urgente pero No importante",
+                    "No Urgente y No Importante"
+                ],
+                correctIndex: 1,
+                justificationRight: "¡Así es! Es Muy Importante para tu futuro, pero como no es Urgente (no es para ya), tienes que ser disciplinado para no dejarlo.",
+                justificationWrong: "El estudio a largo plazo es Importante (para tu carrera) pero No Urgente (no hay prisa inmediata)."
+            },
+            // Tema 1.5 / 1.6: Entorno y Adultos
+            {
+                question: "En la Andragogía (cómo aprendemos los adultos), ¿cuál es nuestra mayor ventaja al estudiar temas nuevos?",
+                options: [
+                    "Que tenemos excelente memoria.",
+                    "Que tenemos mucha experiencia clínica previa de nuestro trabajo.",
+                    "Que nos gusta mucho leer libros largos.",
+                    "Que solo aprendemos si nos dan un premio."
+                ],
+                correctIndex: 1,
+                justificationRight: "¡Exacto! Tu experiencia diaria en el hospital es la base más fuerte para entender mejor lo que lees en los libros.",
+                justificationWrong: "Nuestra mayor ventaja como adultos es la experiencia clínica; gracias a lo que ya vivimos en los hospitales, entendemos mejor la teoría."
+            },
+            {
+                question: "¿Qué tipo de luz se recomienda para tu lugar de estudio si no te quieres quedar dormido?",
+                options: [
+                    "Luz amarilla oscura",
+                    "Lámparas de colores",
+                    "Luz blanca/fría",
+                    "Poca luz, casi a oscuras"
+                ],
+                correctIndex: 2,
+                justificationRight: "Correcto, la luz blanca nos ayuda a estar alertas y nos quita el sueño, ideal después de las guardias.",
+                justificationWrong: "Se recomienda la luz fría o blanca porque le avisa a tu cerebro que es hora de estar alerta y despierto."
+            },
+            // Tema 2.1: Canal Visual
+            {
+                question: "¿Cómo se llama el esquema que tiene un dibujo en el centro y coloridas ramas hacia los lados?",
+                options: [
+                    "Diagrama de Flujo",
+                    "Mapa Conceptual",
+                    "Mapa Mental",
+                    "Línea del tiempo"
+                ],
+                correctIndex: 2,
+                justificationRight: "¡Perfecto! El mapa mental es muy creativo, usa muchos colores e imágenes para recordar mejor.",
+                justificationWrong: "Al esquema con una imagen central y ramas a los lados se le conoce como Mapa Mental."
+            },
+            {
+                question: "¿Qué tipo de lectura utilizamos si queremos encontrar si un artículo científico tiene errores o información falsa?",
+                options: [
+                    "Lectura Rápida",
+                    "Lectura de Comprensión",
+                    "Lectura Crítica",
+                    "Lectura Literal"
+                ],
+                correctIndex: 2,
+                justificationRight: "Excelente. La lectura crítica no solo lee, sino que juzga si la información es buena o mala.",
+                justificationWrong: "Para evaluar si un artículo es confiable o no, aplicamos la 'Lectura Crítica'."
+            },
+            // Tema 2.2: Canal Auditivo
+            {
+                question: "Al usar la nemotecnia (acrónimo) V.O.M.I.T. para atender pacientes graves, ¿qué significa la 'O' y la 'M'?",
+                options: [
+                    "Orina y Medicamentos",
+                    "Oxígeno y Monitor EKG",
+                    "Observación y Movimiento",
+                    "Oídos y Manos"
+                ],
+                correctIndex: 1,
+                justificationRight: "¡Exacto! Debes garantizar Oxígeno y colocar el Monitor cardiaco.",
+                justificationWrong: "Es Vitales, Oxígeno, Monitor, IV (intravenoso) y Tratamiento."
+            },
+            {
+                question: "Si eres una persona auditiva, ¿qué técnica te sirve para estudiar mientras manejas hacia el hospital?",
+                options: [
+                    "Hacer mapas mentales",
+                    "Leer libros en el carro",
+                    "Escuchar notas de voz grabadas por ti mismo",
+                    "Ver videos musicales"
+                ],
+                correctIndex: 2,
+                justificationRight: "Bien. Grabar tu voz resumiendo la clase y escucharla de fondo es excelente para aprovechar los tiempos muertos.",
+                justificationWrong: "Escuchar notas de voz o audios de clases (podcasts) te sirve para repasar mientras haces otras actividades."
+            },
+            // Tema 2.3: Canal Kinestésico y Social
+            {
+                question: "¿Por qué es tan bueno practicar un 'Código Rojo' en un maniquí de simulación?",
+                options: [
+                    "Para jugar un rato.",
+                    "Para platicar con los compañeros.",
+                    "Para cansar a los alumnos.",
+                    "Para generar memoria en nuestros músculos y practicar bajo estrés leve."
+                ],
+                correctIndex: 3,
+                justificationRight: "¡Correcto! Simular nos ayuda a mecanizar los movimientos para que, a la hora de una urgencia real, sepamos cómo movernos en automático.",
+                justificationWrong: "Los simulacros o 'sociodramas' nos preparan física y mentalmente; nuestros músculos aprenden el movimiento y nos estresamos menos en la vida real."
+            },
+            {
+                question: "¿Cómo se llama la dinámica grupal donde todos dicen muchas ideas rápidas (sin burlarse) para resolver un problema?",
+                options: [
+                    "Lluvia de Ideas",
+                    "Debate",
+                    "Entrevista",
+                    "Lectura en voz alta"
+                ],
+                correctIndex: 0,
+                justificationRight: "Exacto. En la Lluvia de Ideas, cualquier propuesta cuenta y anotamos todo en el pizarrón.",
+                justificationWrong: "Cuando todo el equipo da muchas opciones para solucionar algo, se está aplicando la 'Lluvia de Ideas'."
+            },
+            // Tema 3.1 a 3.5: Metodologías
+            {
+                question: "En el método S.Q.A. (Sé, Quiero saber, Aprendí), ¿Para qué sirve la columna de la 'A' (Aprendí)?",
+                options: [
+                    "Para apuntar las dudas iniciales.",
+                    "Para evaluar al final de la clase qué cosas nuevas logramos entender.",
+                    "Para escribir todo el apunte del maestro.",
+                    "Para calificar al maestro."
+                ],
+                correctIndex: 1,
+                justificationRight: "¡Sí! La columna 'Aprendí' nos permite darnos cuenta de lo que hemos avanzado comparado con lo que sabíamos al inicio.",
+                justificationWrong: "En 'Aprendí', reflexionas y evalúas el nuevo conocimiento que ganaste durante la sesión."
+            },
+            {
+                question: "¿Qué herramienta usarías para ver claramente las diferencias y semejanzas entre el paracetamol y el ibuprofeno?",
+                options: [
+                    "Una lluvia de ideas",
+                    "Un cuadro clínico",
+                    "Un cuadro comparativo",
+                    "Una infografía"
+                ],
+                correctIndex: 2,
+                justificationRight: "Excelente. Los cuadros comparativos son ideales para estudiar medicamentos que se parecen.",
+                justificationWrong: "El Cuadro Comparativo nos pone frente a frente las variables de dos o más conceptos para notar sus diferencias."
+            },
+            {
+                question: "En un Mapa Conceptual (que va de arriba hacia abajo), ¿qué elemento es obligatorio que conecte las ideas?",
+                options: [
+                    "Solo flechas sin nada escrito.",
+                    "Palabras de enlace (como: \"se divide en\", \"causa\").",
+                    "Muchos colores.",
+                    "Imágenes grandes."
+                ],
+                correctIndex: 1,
+                justificationRight: "Asi es. Los mapas conceptuales se leen como si fueran oraciones completas gracias a las palabras conectivas.",
+                justificationWrong: "Los Mapas Conceptuales siempre deben tener palabras que unan los cuadros, para que puedan leerse lógicamente."
+            },
+            // Tema 4.1 a 4.3: TACs y Tecnologías
+            {
+                question: "Para nunca perder tus tareas médicas aunque se rompa tu computadora o te roben la mochila, ¿dónde deberías guardarlas?",
+                options: [
+                    "En una memoria USB.",
+                    "Imprimir todo.",
+                    "Mandarlas por fax.",
+                    "En la Nube (Google Drive, OneDrive)."
+                ],
+                correctIndex: 3,
+                justificationRight: "¡Muy bien! Subir las cosas a la nube asegura que mientras tengas internet, tus archivos vivirán para siempre.",
+                justificationWrong: "La Nube (Google Drive, OneDrive) guarda tus archivos en internet y a salvo de los accidentes de aparatos físicos."
+            },
+            {
+                question: "¿Qué papelillos cuadrados en blanco y negro podemos pegar al carro rojo para abrirlos con la cámara del celular y ver un video?",
+                options: [
+                    "Código de barras",
+                    "Stickers decorativos",
+                    "Códigos QR",
+                    "Etiquetas de precios"
+                ],
+                correctIndex: 2,
+                justificationRight: "¡Exacto! Pegar Códigos QR en los muebles del hospital permite consultar información didáctica en segundos.",
+                justificationWrong: "Se trata de los Códigos QR, que al escanearse nos mandan directo a tutoriales, guías clínicas o videos."
+            },
+            {
+                question: "Hablando de TICS, ¿Qué significa la sigla M-learning?",
+                options: [
+                    "Aprender mucha Maternidad.",
+                    "Aprender Mecánica de enfermería.",
+                    "Mobile Learning: Aprender directamente desde el Teléfono Móvil (Celular).",
+                    "Aprender usando Maniquíes."
+                ],
+                correctIndex: 2,
+                justificationRight: "Correcto. M-Learning es cuando usas tu celular para hacer quizes, leer pdfs de clases virtuales y aprovechar al máximo la pantalla de tu teléfono.",
+                justificationWrong: "La 'M' es de Mobile (Móvil/Celular). Significa usar nuestros smartphones para el estudio de forma portátil."
+            }
+        ];
+
+        // Shuffle the array and pick the first 10 for the exam
+        shuffleArray(quizData);
+        const examQuestions = quizData.slice(0, 10);
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = []; // Para guardar las respuestas del usuario
+
+        const questionText = document.getElementById('question-text');
+        const optionsGrid = document.getElementById('options-grid');
+        const progressBar = document.getElementById('progress-bar');
+        const questionCounter = document.getElementById('question-counter');
+        const justificationBox = document.getElementById('justification-box');
+        const justificationTitle = document.getElementById('justification-title');
+        const justificationText = document.getElementById('justification-text');
+        const nextBtn = document.getElementById('next-btn');
+
+        // Función para revolver (shuffle) el arreglo de forma aleatoria (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion() {
+            // Reset state
+            justificationBox.style.display = 'none';
+            justificationBox.className = 'justification-box';
+            nextBtn.style.display = 'none';
+            optionsGrid.innerHTML = '';
+
+            const q = examQuestions[currentQuestion];
+            questionText.textContent = q.question;
+            questionCounter.textContent = 'Pregunta ' + (currentQuestion + 1) + ' de ' + examQuestions.length;
+            progressBar.style.width = (((currentQuestion) / examQuestions.length) * 100) + '%';
+
+            q.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.innerHTML = '<span style="margin-right: 15px; font-weight: bold; color: var(--primary);">' + String.fromCharCode(65 + index) + '.</span> ' + option;
+                button.onclick = () => selectOption(index, button);
+                optionsGrid.appendChild(button);
+            });
+        }
+
+        function selectOption(selectedIndex, buttonElement) {
+            const q = examQuestions[currentQuestion];
+            const buttons = document.querySelectorAll('.option-btn');
+
+            // Guardar la respuesta del usuario
+            userAnswers[currentQuestion] = selectedIndex;
+
+            // Revisamos puntuación internamente
+            if (selectedIndex === q.correctIndex) {
+                score++;
+            }
+
+            // Disable all buttons and visually select the chosen one temporarily
+            buttons.forEach(btn => btn.classList.add('disabled'));
+            buttonElement.style.border = "2px solid var(--primary)";
+            buttonElement.style.background = "var(--primary-light)";
+
+            // Wait briefly before moving without showing justification
+            setTimeout(() => {
+                nextQuestion();
+            }, 500);
+        }
+
+        function showJustification(isCorrect, text) {
+            justificationBox.style.display = 'block';
+            if (isCorrect) {
+                justificationBox.classList.add('correct');
+                justificationTitle.innerHTML = '<i class="fas fa-check-circle"></i> ¡Respuesta Correcta!';
+            } else {
+                justificationBox.classList.add('wrong');
+                justificationTitle.innerHTML = '<i class="fas fa-times-circle"></i> Respuesta Incorrecta';
+            }
+            justificationText.textContent = text;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < examQuestions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-content').style.display = 'none';
+            document.getElementById('quiz-header').style.display = 'none';
+            const scoreContainer = document.getElementById('score-container');
+            scoreContainer.style.display = 'block';
+
+            progressBar.style.width = '100%';
+
+            const scoreCircle = document.getElementById('score-circle');
+            scoreCircle.textContent = score + '/' + examQuestions.length;
+
+            const scoreMessage = document.getElementById('score-message');
+            if (score === examQuestions.length) {
+                scoreMessage.innerHTML = "¡Calificación Perfecta! <br> Muestras un dominio absoluto de los conceptos.";
+                scoreCircle.style.borderColor = "#38a169";
+                scoreCircle.style.color = "#38a169";
+            } else if (score >= examQuestions.length - 2) {
+                scoreMessage.innerHTML = "¡Aprobado con Excelencia! <br> Tienes una sólida comprensión de las estrategias.";
+            } else if (score >= 6) {
+                scoreMessage.innerHTML = "Aprobado. <br> Sin embargo, te recomendamos seguir repasando.";
+            } else {
+                scoreMessage.innerHTML = "No Aprobado. <br> Es mandatorio repasar la unidad didáctica.";
+                scoreCircle.style.borderColor = "#e53e3e";
+                scoreCircle.style.color = "#e53e3e";
+            }
+        }
+
+        function showReview() {
+            document.getElementById('score-container').style.display = 'none';
+            const reviewContainer = document.getElementById('review-container');
+            const reviewContent = document.getElementById('review-content');
+
+            reviewContainer.style.display = 'block';
+            reviewContent.innerHTML = ''; // Limpiar por si acaso
+
+            examQuestions.forEach((q, index) => {
+                const item = document.createElement('div');
+                item.className = 'review-item';
+
+                const correctOption = q.options[q.correctIndex];
+                const selectedOptionIndex = userAnswers[index];
+
+                let answerHtml = '<div class="review-answer"><i class="fas fa-check-circle"></i> Respuesta correcta: ' + correctOption + '</div>';
+
+                // Si el usuario contestó otra cosa, la mostramos en rojo
+                if (selectedOptionIndex !== undefined && selectedOptionIndex !== q.correctIndex) {
+                    const wrongOption = q.options[selectedOptionIndex];
+                    answerHtml += '<div style="color: #e53e3e; font-weight: 500; margin-bottom: 0.5rem;"><i class="fas fa-times-circle"></i> Tu respuesta: ' + wrongOption + '</div>';
+                }
+
+                item.innerHTML =
+                    '<div class="review-question">' + (index + 1) + '. ' + q.question + '</div>' +
+                    answerHtml +
+                    '<div class="review-justification">' +
+                    '<strong>¿Por qué?</strong><br>' +
+                    q.justificationRight +
+                    '</div>';
+
+                reviewContent.appendChild(item);
+            });
+
+            // Scroll al inicio del repaso
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize quiz: Revolvemos las preguntas se hizo mas arriba, solo cargamos la primera
+        loadQuestion();
+    </script>
+</body>
+
+</html>
