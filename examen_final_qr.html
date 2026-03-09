@@ -38,6 +38,55 @@
             background: var(--card-bg);
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            width: 90%;
+            /* Ensure it does not exceed screen width */
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem auto;
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            .header img {
+                max-width: 80px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-group {
+                padding: 1rem;
+            }
+
+            .question h3 {
+                font-size: 1rem;
+            }
+
+            .option-label {
+                font-size: 0.95rem;
+                padding: 0.6rem;
+            }
+
+            button.submit-btn {
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+
+            .success-message {
+                padding: 1.5rem;
+            }
+
+            .success-message i {
+                font-size: 3rem;
+            }
+
+            .success-message h2 {
+                font-size: 1.4rem;
+            }
         }
 
         .header {
