@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Completo - Aura Tech</title>
+    <meta name="description" content="Explora nuestro catálogo completo de gadgets y tecnología premium.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ecommerce_demo.css">
+    <style>
+        /* Estilos específicos para la página de catálogo */
+        .page-header {
+            background-color: var(--bg-light);
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .page-header p {
+            color: var(--text-muted);
+        }
+        .catalog-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            padding: 4rem 0;
+        }
+        .filters-sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+        .filter-group h4 {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .checkbox-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+        .catalog-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .sort-by select {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: inherit;
+            outline: none;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 4rem;
+        }
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .page-btn.active, .page-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        @media (max-width: 992px) {
+            .catalog-layout {
+                grid-template-columns: 1fr;
+            }
+            .filters-sidebar {
+                display: none; /* En una versión real, esto sería un menú desplegable en móvil */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="index.html" class="back-link">← Volver al Portafolio</a>
+        <span>Envío gratuito en pedidos mayores a $500 MXN</span>
+        <div class="language-selector">MX / ES</div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">Aura.<span>Tech</span></div>
+            
+            <ul class="nav-links">
+                <li><a href="ecommerce_demo.html">Inicio</a></li>
+                <li><a href="ecommerce_catalogo.html" class="active">Catálogo</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Marcas</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <button class="icon-btn" aria-label="Buscar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <button class="icon-btn" aria-label="Cuenta">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </button>
+                <button class="icon-btn cart-btn" aria-label="Carrito">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">2</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Todo el Catálogo</h1>
+            <p>Descubre nuestra selección completa de tecnología de vanguardia.</p>
+        </div>
+    </div>
+
+    <div class="container catalog-layout">
+        <!-- Sidebar de Filtros -->
+        <aside class="filters-sidebar">
+            <h3>Filtrar por</h3>
+            
+            <div class="filter-group">
+                <h4>Categorías</h4>
+                <label class="checkbox-label"><input type="checkbox" checked> Audio (24)</label>
+                <label class="checkbox-label"><input type="checkbox"> Wearables (12)</label>
+                <label class="checkbox-label"><input type="checkbox"> Accesorios (45)</label>
+                <label class="checkbox-label"><input type="checkbox"> Smart Home (8)</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Precio</h4>
+                <label class="checkbox-label"><input type="checkbox"> Menos de $1,000</label>
+                <label class="checkbox-label"><input type="checkbox"> $1,000 - $3,000</label>
+                <label class="checkbox-label"><input type="checkbox"> $3,000 - $5,000</label>
+                <label class="checkbox-label"><input type="checkbox"> Más de $5,000</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Marca</h4>
+                <label class="checkbox-label"><input type="checkbox" checked> Aura Original</label>
+                <label class="checkbox-label"><input type="checkbox"> TechPro</label>
+                <label class="checkbox-label"><input type="checkbox"> SonicX</label>
+            </div>
+            
+            <button class="btn btn-outline-white" style="color: var(--text-dark); border-color: var(--border); width: 100%;">Limpiar Filtros</button>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="catalog-main">
+            <div class="catalog-toolbar">
+                <p>Mostrando 1-6 de 89 productos</p>
+                <div class="sort-by">
+                    <label for="sort">Ordenar por: </label>
+                    <select id="sort">
+                        <option>Destacados</option>
+                        <option>Precio: Menor a Mayor</option>
+                        <option>Precio: Mayor a Menor</option>
+                        <option>Más Recientes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Nuevo</span>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Auriculares Aura">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Audio</span>
+                        <h3>Auriculares Aura Pro V2</h3>
+                        <div class="product-price">
+                            <span class="current-price">$4,599</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Smartwatch Tech">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Wearables</span>
+                        <h3>Reloj Inteligente Series 5</h3>
+                        <div class="product-price">
+                            <span class="current-price">$3,299</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge sale">-15%</span>
+                        <img src="https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="iPhone Case">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Accesorios</span>
+                        <h3>Funda Magnética de Carbono</h3>
+                        <div class="product-price">
+                            <span class="current-price">$599</span>
+                            <span class="old-price">$705</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Audífonos TWS">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Audio</span>
+                        <h3>Audífonos TWS Lite</h3>
+                        <div class="product-price">
+                            <span class="current-price">$1,199</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1572569533902-4e81af8ec532?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Teclado Mecánico">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Accesorios</span>
+                        <h3>Teclado Mecánico K3</h3>
+                        <div class="product-price">
+                            <span class="current-price">$2,499</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Nuevo</span>
+                        <img src="https://images.unsplash.com/photo-1585336261022-680e2a5ce241?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mouse Ergonómico">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Accesorios</span>
+                        <h3>Mouse MX Ergo</h3>
+                        <div class="product-price">
+                            <span class="current-price">$1,899</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">...</button>
+                <button class="page-btn">15</button>
+                <button class="page-btn">→</button>
+            </div>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Aura.<span>Tech</span></div>
+                    <p>La tecnología del futuro, en tus manos hoy. Diseñado en Ciudad de México.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tienda</h4>
+                    <ul>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Wearables</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                        <li><a href="#">Nuevos Lanzamientos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Envíos y Devoluciones</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Contáctanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Suscríbete</h4>
+                    <p>Recibe ofertas exclusivas y novedades.</p>
+                    <div class="input-group">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Aura Tech. (Esta es una página de demostración del portafolio).</p>
+                <div class="payment-methods">
+                    <span>💳 Visa</span>
+                    <span>💳 Mastercard</span>
+                    <span>💳 PayPal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

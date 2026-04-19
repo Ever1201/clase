@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Tech - Tienda E-Commerce Demo</title>
+    <meta name="description" content="Demo de tienda en línea premium enfocada en gadgets y tecnología.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ecommerce_demo.css">
+</head>
+<body>
+    <div class="top-bar">
+        <a href="index.html" class="back-link">← Volver al Portafolio</a>
+        <span>Envío gratuito en pedidos mayores a $500 MXN</span>
+        <div class="language-selector">MX / ES</div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">Aura.<span>Tech</span></div>
+            
+            <ul class="nav-links">
+                <li><a href="ecommerce_demo.html" class="active">Inicio</a></li>
+                <li><a href="ecommerce_catalogo.html">Catálogo</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Marcas</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <button class="icon-btn" aria-label="Buscar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <button class="icon-btn" aria-label="Cuenta">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </button>
+                <button class="icon-btn cart-btn" aria-label="Carrito">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge">2</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="tag">NUEVA COLECCIÓN</span>
+                <h1>El sonido que <br><span>transforma</span> tu espacio.</h1>
+                <p>Descubre nuestros auriculares premium con cancelación activa de ruido y diseño minimalista.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary">Comprar Ahora</button>
+                    <button class="btn btn-outline-white">Ver Detalles</button>
+                </div>
+            </div>
+            <!-- La imagen está de fondo a través de CSS -->
+        </div>
+    </header>
+
+    <section class="features-bar">
+        <div class="container features-grid">
+            <div class="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <div>
+                    <h4>Envío Rápido</h4>
+                    <p>Entrega en 24/48 horas</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <div>
+                    <h4>Pagos Seguros</h4>
+                    <p>Con encriptación 256-bit</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.13 15.57a9 9 0 1 0 3.84-10.36L2 2"></path></svg>
+                <div>
+                    <h4>Devoluciones</h4>
+                    <p>30 días garantizados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Tendencias Actuales</h2>
+                <a href="ecommerce_catalogo.html" class="view-all">Ver todo el catálogo →</a>
+            </div>
+
+            <div class="product-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Nuevo</span>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Auriculares Aura">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Audio</span>
+                        <h3>Auriculares Aura Pro V2</h3>
+                        <div class="product-price">
+                            <span class="current-price">$4,599</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Smartwatch Tech">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Wearables</span>
+                        <h3>Reloj Inteligente Series 5</h3>
+                        <div class="product-price">
+                            <span class="current-price">$3,299</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge sale">-15%</span>
+                        <img src="https://images.unsplash.com/photo-1523206489230-c012c64b2b48?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="iPhone Case">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Accesorios</span>
+                        <h3>Funda Magnética de Carbono</h3>
+                        <div class="product-price">
+                            <span class="current-price">$599</span>
+                            <span class="old-price">$705</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Audífonos TWS">
+                        <div class="product-actions">
+                            <button class="action-btn" title="Añadir a favoritos">♡</button>
+                            <button class="action-btn btn-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Audio</span>
+                        <h3>Audífonos TWS Lite</h3>
+                        <div class="product-price">
+                            <span class="current-price">$1,199</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner-cta">
+        <div class="container">
+            <div class="banner-content">
+                <h2>Diseño que habla por sí mismo</h2>
+                <p>Nuestra nueva línea combina estética minimalista con rendimiento excepcional.</p>
+                <button class="btn btn-primary">Descubrir la Colección</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Aura.<span>Tech</span></div>
+                    <p>La tecnología del futuro, en tus manos hoy. Diseñado en Ciudad de México.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tienda</h4>
+                    <ul>
+                        <li><a href="#">Audio</a></li>
+                        <li><a href="#">Wearables</a></li>
+                        <li><a href="#">Accesorios</a></li>
+                        <li><a href="#">Nuevos Lanzamientos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Centro de Ayuda</a></li>
+                        <li><a href="#">Envíos y Devoluciones</a></li>
+                        <li><a href="#">Garantía</a></li>
+                        <li><a href="#">Contáctanos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Suscríbete</h4>
+                    <p>Recibe ofertas exclusivas y novedades.</p>
+                    <div class="input-group">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button>→</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Aura Tech. (Esta es una página de demostración del portafolio).</p>
+                <div class="payment-methods">
+                    <span>💳 Visa</span>
+                    <span>💳 Mastercard</span>
+                    <span>💳 PayPal</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
