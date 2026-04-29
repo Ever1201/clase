@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monica Alvidrez - Jardín de Eventos</title>
+    <!-- Phosphor Icons for elegant line icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="monica_jardin_demo.css">
+    <!-- Chart.js for the visual graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="ph-fill ph-plant"></i>
+            <span>Jardín Imperial</span>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#" class="nav-item active"><i class="ph ph-squares-four"></i> Panel de Control</a></li>
+            <li><a href="#" class="nav-item"><i class="ph ph-calendar-blank"></i> Calendario</a></li>
+            <li><a href="#" class="nav-item"><i class="ph ph-currency-circle-dollar"></i> Ingresos y Gastos</a></li>
+            <li><a href="#" class="nav-item"><i class="ph ph-users"></i> Clientes</a></li>
+            <li><a href="#" class="nav-item"><i class="ph ph-gear"></i> Configuración</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="main-content">
+        
+        <!-- Header -->
+        <header>
+            <div class="welcome-text">
+                <h1>Hola, Monica 👋</h1>
+                <p>Aquí tienes el resumen de tu jardín de eventos de este mes.</p>
+            </div>
+            
+            <div class="header-actions">
+                <button class="btn-primary" onclick="openModal()">
+                    <i class="ph ph-plus-circle"></i> Nuevo Registro
+                </button>
+                <div class="user-profile">
+                    <div class="avatar">M</div>
+                    <span>Monica A.</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Views Container -->
+        <div id="views-container">
+            
+            <!-- VIEW 1: Dashboard -->
+            <div id="dashboardView" class="view-section" style="display: block; animation: fadeIn 0.4s ease;">
+                <!-- Stats Overview -->
+        <div class="stats-grid">
+            <!-- Ingresos -->
+            <div class="stat-card">
+                <div class="stat-icon income">
+                    <i class="ph ph-trend-up"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Ingresos del Mes</h3>
+                    <p>$45,500</p>
+                </div>
+            </div>
+
+            <!-- Gastos -->
+            <div class="stat-card">
+                <div class="stat-icon expense">
+                    <i class="ph ph-trend-down"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Gastos del Mes</h3>
+                    <p>$12,300</p>
+                </div>
+            </div>
+
+            <!-- Balance -->
+            <div class="stat-card">
+                <div class="stat-icon balance">
+                    <i class="ph ph-wallet"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Balance Total</h3>
+                    <p>$33,200</p>
+                </div>
+            </div>
+
+            <!-- Eventos -->
+            <div class="stat-card">
+                <div class="stat-icon events">
+                    <i class="ph ph-calendar-check"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>Eventos este mes</h3>
+                    <p>8</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Sections -->
+        <div class="dashboard-grid">
+            
+            <!-- Left Column: Chart -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Flujo de Caja (Ingresos vs Gastos)</h2>
+                    <button class="btn-secondary">Ver Reporte Completo</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Right Column: Scheduled Dates -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Próximas Fechas Agendadas</h2>
+                    <button class="btn-secondary">Ver Calendario</button>
+                </div>
+                
+                <div class="events-list">
+                    <!-- Event 1 -->
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">Oct</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Boda Familia Pérez Garza</h4>
+                            <p><i class="ph ph-clock"></i> 16:00 - 02:00 hrs</p>
+                        </div>
+                        <div class="status-badge confirmed">Confirmado</div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">Oct</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>XV Años Sofía</h4>
+                            <p><i class="ph ph-clock"></i> 18:00 - 03:00 hrs</p>
+                        </div>
+                        <div class="status-badge confirmed">Confirmado</div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">28</span>
+                            <span class="month">Oct</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Bautizo Familia López</h4>
+                            <p><i class="ph ph-clock"></i> 10:00 - 18:00 hrs</p>
+                        </div>
+                        <div class="status-badge pending">Pendiente (Anticipo)</div>
+                    </div>
+
+                     <!-- Event 4 -->
+                     <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">05</span>
+                            <span class="month">Nov</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Reunión Empresarial</h4>
+                            <p><i class="ph ph-clock"></i> 09:00 - 15:00 hrs</p>
+                        </div>
+                        <div class="status-badge pending">Pendiente</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div> <!-- End dashboard-grid -->
+    </div> <!-- End dashboardView -->
+
+    <!-- VIEW 2: Calendar Module -->
+    <div id="calendarView" class="calendar-view">
+                <div class="calendar-wrapper">
+                    <div class="calendar-nav">
+                        <h2>Octubre 2026</h2>
+                        <div class="calendar-nav-buttons">
+                            <button class="btn-icon"><i class="ph ph-caret-left"></i></button>
+                            <button class="btn-icon"><i class="ph ph-caret-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <!-- Days of week -->
+                        <div class="calendar-day-name">Dom</div>
+                        <div class="calendar-day-name">Lun</div>
+                        <div class="calendar-day-name">Mar</div>
+                        <div class="calendar-day-name">Mié</div>
+                        <div class="calendar-day-name">Jue</div>
+                        <div class="calendar-day-name">Vie</div>
+                        <div class="calendar-day-name">Sáb</div>
+
+                        <!-- Empty days (offset for month start) -->
+                        <div class="calendar-day empty"></div>
+                        <div class="calendar-day empty"></div>
+                        <div class="calendar-day empty"></div>
+                        <div class="calendar-day empty"></div>
+
+                        <!-- Days of the month -->
+                        <div class="calendar-day"><span class="day-number">1</span></div>
+                        <div class="calendar-day"><span class="day-number">2</span></div>
+                        <div class="calendar-day"><span class="day-number">3</span>
+                            <div class="cal-event internal">Limpieza General</div>
+                        </div>
+                        <div class="calendar-day"><span class="day-number">4</span></div>
+                        <div class="calendar-day"><span class="day-number">5</span></div>
+                        <div class="calendar-day"><span class="day-number">6</span></div>
+                        <div class="calendar-day"><span class="day-number">7</span></div>
+                        
+                        <div class="calendar-day"><span class="day-number">8</span></div>
+                        <div class="calendar-day"><span class="day-number">9</span></div>
+                        <div class="calendar-day"><span class="day-number">10</span></div>
+                        <div class="calendar-day"><span class="day-number">11</span></div>
+                        <div class="calendar-day"><span class="day-number">12</span></div>
+                        <div class="calendar-day"><span class="day-number">13</span></div>
+                        <div class="calendar-day"><span class="day-number">14</span></div>
+                        
+                        <div class="calendar-day today"><span class="day-number">15</span>
+                            <div class="cal-event confirmed" onclick="openModal()">💍 Boda Pérez</div>
+                        </div>
+                        <div class="calendar-day"><span class="day-number">16</span></div>
+                        <div class="calendar-day"><span class="day-number">17</span></div>
+                        <div class="calendar-day"><span class="day-number">18</span></div>
+                        <div class="calendar-day"><span class="day-number">19</span></div>
+                        <div class="calendar-day"><span class="day-number">20</span></div>
+                        <div class="calendar-day"><span class="day-number">21</span></div>
+                        
+                        <div class="calendar-day"><span class="day-number">22</span>
+                            <div class="cal-event confirmed" onclick="openModal()">👑 XV Años Sofía</div>
+                        </div>
+                        <div class="calendar-day"><span class="day-number">23</span></div>
+                        <div class="calendar-day"><span class="day-number">24</span></div>
+                        <div class="calendar-day"><span class="day-number">25</span></div>
+                        <div class="calendar-day"><span class="day-number">26</span></div>
+                        <div class="calendar-day"><span class="day-number">27</span></div>
+                        <div class="calendar-day"><span class="day-number">28</span>
+                            <div class="cal-event pending" onclick="openModal()">👶 Bautizo López</div>
+                        </div>
+                        
+                        <div class="calendar-day"><span class="day-number">29</span></div>
+                        <div class="calendar-day"><span class="day-number">30</span></div>
+                        <div class="calendar-day"><span class="day-number">31</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End Views Container -->
+    </main>
+
+    <!-- Modal Form (Hidden by default) -->
+    <div class="modal-overlay" id="recordModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Registrar Nueva Operación</h2>
+                <button class="btn-close" onclick="closeModal()"><i class="ph ph-x"></i></button>
+            </div>
+            <form onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Tipo de Registro</label>
+                    <select id="tipoRegistro">
+                        <option value="ingreso">💰 Nuevo Ingreso / Anticipo</option>
+                        <option value="gasto">📉 Registrar Gasto</option>
+                        <option value="evento">📅 Agendar Nuevo Evento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Descripción o Nombre del Cliente</label>
+                    <input type="text" placeholder="Ej. Boda Familia Martínez" required>
+                </div>
+                <div class="form-group">
+                    <label>Monto ($)</label>
+                    <input type="number" placeholder="0.00" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Registro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Script to render the fake chart and handle time-based theme -->
+    <script>
+        // UX Enhancement: Change theme based on time of day
+        const currentHour = new Date().getHours();
+        const isDaytime = currentHour >= 6 && currentHour < 19; // Between 6:00 AM and 6:59 PM
+        
+        if (isDaytime) {
+            document.body.classList.add('light-theme');
+        }
+
+        const ctx = document.getElementById('financeChart').getContext('2d');
+        
+        // Gradient for Income
+        const gradientIncome = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientIncome.addColorStop(0, 'rgba(16, 185, 129, 0.5)'); // Green
+        gradientIncome.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+        
+        // Gradient for Expenses
+        const gradientExpense = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientExpense.addColorStop(0, 'rgba(239, 68, 68, 0.5)'); // Red
+        gradientExpense.addColorStop(1, 'rgba(239, 68, 68, 0.0)');
+
+        // Chart colors based on theme
+        const textColor = isDaytime ? '#64748B' : '#94A3B8';
+        const gridColor = isDaytime ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)';
+
+        const data = {
+            labels: ['May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'],
+            datasets: [
+                {
+                    label: 'Ingresos',
+                    data: [25000, 32000, 28000, 41000, 38000, 45500],
+                    borderColor: '#10B981',
+                    backgroundColor: gradientIncome,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Gastos',
+                    data: [8000, 11000, 9500, 15000, 10000, 12300],
+                    borderColor: '#EF4444',
+                    backgroundColor: gradientExpense,
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: textColor,
+                            font: {
+                                family: "'Outfit', sans-serif"
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: gridColor,
+                            borderColor: 'transparent'
+                        },
+                        ticks: {
+                            color: textColor,
+                            font: {
+                                family: "'Outfit', sans-serif"
+                            }
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: gridColor,
+                            borderColor: 'transparent'
+                        },
+                        ticks: {
+                            color: textColor,
+                            font: {
+                                family: "'Outfit', sans-serif"
+                            },
+                            callback: function(value, index, values) {
+                                return '$' + value / 1000 + 'k';
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index',
+                },
+            }
+        };
+
+        new Chart(ctx, config);
+
+        // --- Interactivity Functions ---
+
+        // View Navigation Logic
+        const dashboardView = document.getElementById('dashboardView');
+        const calendarView = document.getElementById('calendarView');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function switchView(viewName) {
+            if (viewName === 'dashboard') {
+                calendarView.classList.remove('active');
+                dashboardView.style.display = 'block';
+            } else if (viewName === 'calendar') {
+                dashboardView.style.display = 'none';
+                calendarView.classList.add('active');
+            }
+        }
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Determine which view to show
+                const iconClass = item.querySelector('i').className;
+                if (iconClass.includes('calendar')) {
+                    switchView('calendar');
+                } else if (iconClass.includes('squares-four')) {
+                    switchView('dashboard');
+                } else {
+                    // For demo purposes, just show toast for other sections
+                    showToast('Sección en construcción para la demo');
+                }
+            });
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('recordModal');
+        
+        function openModal() {
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Form Submit & Toast Logic
+        function submitForm(event) {
+            event.preventDefault(); // Prevent page reload
+            closeModal();
+            showToast('¡Registro guardado exitosamente!');
+            
+            // Optional: reset form
+            event.target.reset();
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="ph ph-check-circle"></i> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 400); // Wait for transition
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
